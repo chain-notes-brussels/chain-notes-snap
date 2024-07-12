@@ -17,11 +17,12 @@ const ViewNote: NextPage = () => {
   const [validAddress, setValidAddress] = useState(false);
 
   const { data: notesData, refetch } = useScaffoldReadContract({
-    contractName: "NotesContract",
-    functionName: "getNotesByAddress",
-    args: [address],
+    contractName: "Notes",
+    functionName: "notesOf",
+    args: [address, 1n],
   });
 
+  console.log("notesData" , notesData);
   useEffect(() => {
     if (address && isAddress(address as string)) {
       setValidAddress(true);
@@ -58,26 +59,29 @@ const ViewNote: NextPage = () => {
       </h1>
       {validAddress ? (
         <div className="flex flex-col items-center">
-          {notes.map((note, index) => (
-            <div key={index} className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-8 m-8">
+          
+            <div className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-8 m-8">
               <div className="flex flex-col mb-4">
                 <span className="block text-xl font-semibold mb-2">Address</span>
-                <Address size="xl" address={note.address} />
+                <Address size="xl" address={notes.noteWriter} />
               </div>
               <div className="flex flex-col mb-4">
                 <span className="block text-xl font-semibold mb-2">Note Content</span>
-                <p>{note.content}</p>
+                <p>{notes.uri}</p>
               </div>
               <div className="flex flex-col mb-4">
-                <span className="block text-xl font-semibold mb-2">Total Votes</span>
-                <p>{note.totalVotes}</p>
+                <span className="block text-xl font-semibold mb-2">Score</span>
+                <p>{notes.score}</p>
+              </div>
+              <div className="flex flex-col mb-4">
+                <span className="block text-xl font-semibold mb-2">Sentiment</span>
+                <p>{notes.sentiment}</p>
               </div>
               <div className="flex flex-col mb-4">
                 <span className="block text-xl font-semibold mb-2">Vote Distribution</span>
-                <Pie data={getPieChartData(note.upVotes, note.downVotes)} />
+                <Pie data={getPieChartData(notes.upVotes, notes.downVotes)} />
               </div>
             </div>
-          ))}
         </div>
       ) : (
         <div className="text-center">
