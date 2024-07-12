@@ -1,8 +1,9 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: AGPL-3.0
 pragma solidity 0.8.26;
 
 /* ChainNotes Libraries */
 import {CNDataTypes} from "src/libraries/CNDataTypes.sol";
+import {CNEvents} from "src/libraries/CNEvents.sol";
 
 /**
  * @title Notes
@@ -64,6 +65,14 @@ contract Notes {
 
         // Increment the specified sentiment for the contract
         sentimentOf[_contractAddress][_sentiment]++;
+
+        // Emit the NotePublished event
+        emit CNEvents.NotePublished(
+            msg.sender,
+            _contractAddress,
+            notesOf[_contractAddress].length,
+            _note
+        );
     }
 
     /**
@@ -88,6 +97,14 @@ contract Notes {
 
         // Increment the notes number of _rating choice
         amountOfRating[_contractAddress][_noteIndex][_rating]++;
+
+        // Emit Voted event
+        emit CNEvents.Voted(
+            msg.sender,
+            _contractAddress,
+            _noteIndex,
+            _rating
+        );
     }
 
     /**
@@ -100,11 +117,20 @@ contract Notes {
      * @return _success status if it succeeded or not
      *
      */
-    fucntion tip(
+    function tip(
         uint16 _noteIndex,
         address _contractAddress
     ) payable external returns (bool _success) {
         // Pay the author of the note
         (_success,) = payable(notesOf[_contractAddress][_noteIndex].noteWriter).call{value: msg.value}("");
+
+        // Emit Tipped event
+        emit CNEvents.Tipped(
+            msg.sender,
+            notesOf[_contractAddress][_noteIndex].noteWriter,
+            _contractAddress,
+            msg.value,
+            notesOf[_contractAddress][_noteIndex]
+        );
     }
 }
