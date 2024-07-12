@@ -5,6 +5,7 @@ libs = ["lib"]
 fs_permissions = [{ access = "read-write", path = "./"}]
 
 [rpc_endpoints]
+default_network = "${SEPOLIA_RPC}"
 sepolia = "${SEPOLIA_RPC}"
 
 [etherscan]
