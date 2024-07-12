@@ -133,4 +133,8 @@ contract Notes {
             notesOf[_contractAddress][_noteIndex]
         );
     }
+
+    function retrieveContractNotes(address _contractAddress) external view returns (CNDataTypes.Note[] memory _notes) {
+        _notes = notesOf[_contractAddress];
+    }
 }
