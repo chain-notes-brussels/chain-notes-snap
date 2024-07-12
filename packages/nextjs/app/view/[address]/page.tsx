@@ -1,19 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useParams } from "next/navigation";
 import type { NextPage } from "next";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 import { Address } from "~~/components/scaffold-eth";
-import { isAddress } from "ethers/lib/utils";
+import { isAddress } from "viem";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ViewNote: NextPage = () => {
-  const router = useRouter();
-  const { address } = router.query;
+  const { address } = useParams();
   const [notes, setNotes] = useState<any[]>([]);
   const [validAddress, setValidAddress] = useState(false);
 

@@ -1,26 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/router";
-import type { NextPage } from "next";
-// import { isAddress } from "ethers/lib/utils";
+import Link from "next/link";
+import { isAddress } from "viem";
 import { AddressInput } from "~~/components/scaffold-eth";
 
-const ViewPage: NextPage = () => {
+const ViewPage = () => {
   const [inputAddress, setInputAddress] = useState("");
   const [validAddress, setValidAddress] = useState(false);
-  const router = useRouter();
 
   const handleAddressChange = (value: string) => {
     setInputAddress(value);
-    // setValidAddress(isAddress(value));
-    setValidAddress(true);
-  };
-
-  const handleViewNote = () => {
-    if (validAddress) {
-      router.push(`/view/${inputAddress}`);
-    }
+    setValidAddress(isAddress(value));
   };
 
   return (
@@ -35,13 +26,14 @@ const ViewPage: NextPage = () => {
             <AddressInput value={inputAddress} onChange={handleAddressChange} placeholder="Address" />
           </div>
           <div className="flex flex-col items-center mt-4">
-            <button
-              className={`btn btn-primary ${!validAddress && 'btn-disabled'}`}
-              onClick={handleViewNote}
-              disabled={!validAddress}
-            >
-              View Note
-            </button>
+            <Link href={validAddress ? `/view/${inputAddress}` : "#"} passHref>
+              <button
+                className={`btn btn-primary ${!validAddress && 'btn-disabled'}`}
+                disabled={!validAddress}
+              >
+                View Note
+              </button>
+            </Link>
           </div>
         </div>
       </div>
