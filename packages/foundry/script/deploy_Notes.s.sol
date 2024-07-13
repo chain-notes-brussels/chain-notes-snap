@@ -29,6 +29,9 @@ contract CounterScript is Script {
 
     function run(bool _onBase) external {
         vm.startBroadcast(deployerKey);
+        contractA = new MockContractA();
+        contractB = new MockContractB();
+        contractC = new MockContractC();
         if (_onBase) {
             notes = new Notes(
                 true,
@@ -39,6 +42,9 @@ contract CounterScript is Script {
             );
 
             vm.writeFile(NOTES_PATH, vm.toString(address(notes)));
+            vm.writeFile(A_PATH, vm.toString(address(contractA)));
+            vm.writeFile(B_PATH, vm.toString(address(contractB)));
+            vm.writeFile(C_PATH, vm.toString(address(contractC)));
 
         } else {
             notes = new Notes(
@@ -49,9 +55,6 @@ contract CounterScript is Script {
                 voteId
             );
 
-            contractA = new MockContractA();
-            contractB = new MockContractB();
-            contractC = new MockContractC();
             CNDataTypes.WorldIdProof memory emptyId;
 
             notes.publishNote(
