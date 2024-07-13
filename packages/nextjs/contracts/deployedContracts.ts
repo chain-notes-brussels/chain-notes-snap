@@ -2607,7 +2607,7 @@ const deployedContracts = {
   },
   84532: {
     Notes: {
-      address: "0xe77fe9e644730ba9749da926ced8346aa80cbb29",
+      address: "0x4a71867b2739f0976ccc950b643582ca94e6ca28",
       abi: [
         {
           type: "constructor",
