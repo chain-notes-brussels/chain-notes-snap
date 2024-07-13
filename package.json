@@ -43,8 +43,5 @@
     "node": ">=18.17.0"
   },
   "dependencies": {
-    "@worldcoin/idkit": "^1.2.2",
-    "prop-types": "^15.8.1",
-    "react-shadow": "^20.5.0"
   }
 }
