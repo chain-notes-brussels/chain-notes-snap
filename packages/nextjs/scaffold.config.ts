@@ -15,7 +15,6 @@ const scaffoldConfig = {
     chains.sepolia,
     chains.baseSepolia,
     chains.arbitrumSepolia,
-    chains.morphSepolia,
     chains.scrollSepolia,
     chains.neonDevnet,
     chains.lineaSepolia,
