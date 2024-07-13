@@ -1395,7 +1395,7 @@ const deployedContracts = {
   },
   48899: {
     Notes: {
-      address: "0xd75595cca0721f30a6449dd2b641bc2e4fe44558",
+      address: "0x77c461c1e180dd6a08a17e74bfb5207e44c7ac7f",
       abi: [
         {
           type: "constructor",
@@ -2043,6 +2043,84 @@ const deployedContracts = {
               internalType: "enum CNDataTypes.Actions",
             },
           ],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractA: {
+      address: "0x7868c79421a36a00b0df2c2c5254abf89b98ea34",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractB: {
+      address: "0xb3d73b172167437bcf815508a6e4563040b9c801",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractC: {
+      address: "0x4a2b33a77de8f69b8cf913aafc6357f4ce176105",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
         },
       ],
       inheritedFunctions: {},
