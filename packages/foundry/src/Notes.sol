@@ -79,6 +79,17 @@ contract Notes {
     //  / /___/ /_/ / / / (__  ) /_/ /  / /_/ / /__/ /_/ /_/ / /
     //  \____/\____/_/ /_/____/\__/_/   \__,_/\___/\__/\____/_/
 
+    /**
+     * @notice
+     *  Constructor for Notes contract
+     *
+     * @param _useWorldId a boolan if we are using worldcoin id or not
+     * @param _worldId address of worldå
+     * @param _appId
+     * @param _noteId
+     * @param _voteId
+     *
+     */
     constructor(
         bool _useWorldId,
         address _worldId,
