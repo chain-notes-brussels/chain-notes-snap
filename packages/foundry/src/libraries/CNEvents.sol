@@ -16,7 +16,8 @@ library CNEvents {
         address indexed voter,
         address indexed contractAddress,
         uint16 noteIndex,
-        CNDataTypes.Rating rating
+        CNDataTypes.Rating rating,
+        uint256 score
     );
 
     event Tipped(

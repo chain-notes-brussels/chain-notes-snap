@@ -9,6 +9,11 @@ library CNDataTypes {
         string uri;
     }
 
+    struct NoteScore {
+        uint256 score;
+        bool consideredHelpful;
+    }
+
     enum Rating {
         HELPFUL,
         NOT_HELPFUL,

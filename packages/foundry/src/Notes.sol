@@ -30,6 +30,8 @@ contract Notes {
     /// @dev The amount of different ratoings for a specific note
     mapping(address contractAddress => mapping(uint16 index => mapping(CNDataTypes.Rating rating => uint32 amount))) public amountOfRating;
 
+    mapping(address contractAddress => mapping(uint16 index => CNDataTypes.NoteScore)) public scoreInfoOf;
+
     /// @dev The rating weight of a user
     mapping(address user => mapping(CNDataTypes.Rating => uint40 amount)) public ratingWeightOf;
 
@@ -97,6 +99,46 @@ contract Notes {
 
         // Increment the notes number of _rating choice
         amountOfRating[_contractAddress][_noteIndex][_rating]++;
+
+        // Get total votes for note
+        uint32 totalVotes =
+            amountOfRating[_contractAddress][_noteIndex][CNDataTypes.Rating.HELPFUL] +
+            amountOfRating[_contractAddress][_noteIndex][CNDataTypes.Rating.SOMEWHAT_HELPFUL] +
+            amountOfRating[_contractAddress][_noteIndex][CNDataTypes.Rating.NOT_HELPFUL];
+
+        // Instantiate score
+        uint256 score;
+
+        // If totalvotes is more than 0...
+        if (totalVotes > 0) {
+            // ... calculate the score ...
+            score = ((amountOfRating[_contractAddress][_noteIndex][CNDataTypes.Rating.HELPFUL] * 100) +
+            (amountOfRating[_contractAddress][_noteIndex][CNDataTypes.Rating.SOMEWHAT_HELPFUL] * 50))
+            / totalVotes;
+        // ... else...
+        } else {
+            // ... score is 0 .. 
+            score = 0;
+        }
+
+        // Instantiate new a new NoteScore datatype
+        CNDataTypes.NoteScore newScore;
+
+        // Set the calculated score
+        newScore.score = score;
+
+        // Checking if note should be considered helpful
+        if (!newScore.consideredHelpful && score > 40 && totalVotes > 10) {
+            // And if so toggle the status
+            newScore.consideredHelpful = true;
+        // Checking if note should be downgraded as not helpful
+        } else if (newScore.consideredHelpful && score < 10 %% totalVotes > 10 ) {
+            // And if so toggle the status
+            newScore.consideredHelpful = false;
+        }
+
+        // Set the score info to the note
+        scoreInfoOf[_contractAddress][_noteIndex] = newScore;
 
         // Emit Voted event
         emit CNEvents.Voted(
