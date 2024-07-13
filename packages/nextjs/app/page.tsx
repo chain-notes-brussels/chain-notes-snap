@@ -1,13 +1,24 @@
 "use client";
 
 import Link from "next/link";
+// import ReactDOM from 'react-dom';
+import { useMetaMask, useRequestSnap } from "./hooks";
 import type { NextPage } from "next";
+import Confetti from "react-confetti";
 import { useAccount } from "wagmi";
 import { MagnifyingGlassIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { Address } from "~~/components/scaffold-eth";
 
+// import type { ComponentProps, useState } from 'react';
+// import { ReactComponent as FlaskFox } from '../assets/flask_fox.svg';
+
+
+
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
+  const requestSnap = useRequestSnap();
+
+  // const [confettiVisible, setConfettiVisible] = useState(false);
 
   return (
     <>
@@ -28,6 +39,16 @@ const Home: NextPage = () => {
               // alt={fighters[0].name}
               // style={{ height: "200px" }}
             />
+
+            {/*  here */}
+            <div className="flex justify-center">
+              <button
+                onClick={requestSnap}
+                className="bg-black text-white p-3 m-auto transition transform hover:bg-gray-900 hover:shadow-lg hover:scale-105 active:bg-gray-700 active:shadow-md active:scale-95"
+              >
+                Get Your Snap Now!
+              </button>
+            </div>
           </p>
           <br></br>
         </div>
