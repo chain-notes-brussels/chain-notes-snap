@@ -18,5 +18,8 @@ zero-sepolia = "${ZERO_SEPOLIA_RPC}"
 
 [etherscan]
 sepolia = { key = "${SEPOLIA_API_KEY}", url = "https://api-sepolia.etherscan.io/api" }
+# base-sepolia =
+# arbitrum-sepolia =
+# scroll-sepolia = 
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
