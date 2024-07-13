@@ -3,15 +3,17 @@
 import { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
+import axios from "axios";
 import { AddressInput } from "~~/components/scaffold-eth";
 import { useDeployedContractInfo, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth";
-import { IDKitWidget } from '@worldcoin/idkit';
+import { IDKitWidget, ISuccessResult, useIDKit } from '@worldcoin/idkit'
 import { useTheme } from "next-themes";
 
 const CreateNote: NextPage = () => {
   const { targetNetwork } = useTargetNetwork();
   const [address, setAddress] = useState("");
+  const [proof, setProof] = useState("")
   const [noteContent, setNoteContent] = useState("");
   const [isDanger, setIsDanger] = useState(false);
   const { address: connectedAccount } = useAccount();
@@ -30,31 +32,27 @@ const CreateNote: NextPage = () => {
       sentiment: isDanger,
       timestamp: Date.now(),
     };
-    console.log("Address", address);
+    
+    console.log("proof", proof);
     const note_ipfs = JSON.stringify(note);
+
 
     try {
       // Pass Note to the endpoint and store response
-      const response = await fetch("https://api-phi-vert.vercel.app/createNewNote", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: note_ipfs,
+console.log("note_ipfs", note_ipfs);
+      const response = await axios.post("http://3.122.247.155:3000/createNewNote", {
+        note : note_ipfs,
       });
-      console.log("Response", response);
 
-      if (!response.ok) {
+      console.log("response", response.status);
+      if (!response.status === 200) {
         throw new Error("Failed to store note in IPFS");
       }
-
-      const responseData = await response.json();
-      console.log("Note stored in IPFS:", responseData);
-
+      
       // Write the note to the contract
       await writeNotesContractAsync({
         functionName: "publishNote",
-        args: [address, responseData.ipfsHash, isDanger],
+        args: [address, response.data.cid, isDanger],
       });
     } catch (err) {
       console.error("Error calling create function", err);
@@ -76,9 +74,23 @@ const CreateNote: NextPage = () => {
         <span className="block text-4xl font-bold">Create a Note</span>
       </h1>
 
+
       <div className="flex justify-center items-center">
+
         <div className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-4 m-4 text-center">
           <p>We use Worldcoin World ID to verify your identity. Please sign in to continue. </p>
+          <IDKitWidget
+
+            app_id={process.env.NEXT_PUBLIC_APP_ID as `app_${string}`}
+            action={process.env.NEXT_PUBLIC_ACTION_CREATE as string}
+            signal={address} // proof will only verify if the signal is unchanged, this prevents tampering
+            onSuccess={setProof} // use onSuccess to call your smart contract
+            // no use for handleVerify, so it is removed
+            // use default verification_level (orb-only), as device credentials are not supported on-chain
+          >
+            {({ open }) => <button className="btn btn-primary" onClick={open}>Verify with World ID</button>}
+          </IDKitWidget>
+          <p>Powered by: </p>
           <div>
             {isDarkMode ? (
               <img src="Worldcoin-logo-lockup-light.svg" alt="Worldcoin Logo" className="w-200" />
@@ -86,18 +98,8 @@ const CreateNote: NextPage = () => {
               <img src="Worldcoin-logo-lockup-dark.svg" alt="Worldcoin Logo" className="w-200" />
             )}
           </div>
-          <IDKitWidget
-            app_id="app_GBkZ1KlVUdFTjeMXKlVUdFT" // must be an app set to on-chain in Developer Portal
-            action="claim_nft"
-            signal={address} // proof will only verify if the signal is unchanged, this prevents tampering
-            // onSuccess={onSuccess} // use onSuccess to call your smart contract
-            // no use for handleVerify, so it is removed
-            // use default verification_level (orb-only), as device credentials are not supported on-chain
-          >
-            {({ open }) => <button className="btn btn-primary" onClick={open}>Verify with World ID</button>}
-          </IDKitWidget>
-        </div>
-      </div>
+          
+        </div></div>
 
       <div className="flex justify-center items-center">
         <div className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-8 m-8">
