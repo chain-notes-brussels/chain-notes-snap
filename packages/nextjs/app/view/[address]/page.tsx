@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import type { NextPage } from "next";
+import { IDKitWidget } from "@worldcoin/idkit";
 import axios from "axios";
+import type { NextPage } from "next";
+import { useTheme } from "next-themes";
 import { isAddress } from "viem";
 import { Address } from "~~/components/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth";
-import { useTheme } from "next-themes";
-import { IDKitWidget } from '@worldcoin/idkit';
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const ViewNote: NextPage = () => {
@@ -48,8 +48,8 @@ const ViewNote: NextPage = () => {
         const contentsPromises = noteInfo.map(async (note: any) => {
           try {
             console.log("Note content response: TRY");
-             
-            const response = await axios.get(`http://3.122.247.155:3000/getNote?cid=${note.uri}`);
+
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_IPFS_API}/getNote?cid=${note.uri}`);
             console.log("Note content response:", response);
             return response.data.content;
           } catch (error) {
@@ -101,14 +101,18 @@ const ViewNote: NextPage = () => {
               signal={address}
               onSuccess={setProof}
             >
-              {({ open }) => <button className="btn btn-primary" onClick={open}>Verify with World ID</button>}
+              {({ open }) => (
+                <button className="btn btn-primary" onClick={open}>
+                  Verify with World ID
+                </button>
+              )}
             </IDKitWidget>
             <p>Powered by: </p>
             <div>
               {isDarkMode ? (
-                <img src="Worldcoin-logo-lockup-light.svg" alt="Worldcoin Logo" className="w-200" />
+                <img src="/Worldcoin-logo-lockup-light.svg" alt="Worldcoin Logo" className="w-200" />
               ) : (
-                <img src="Worldcoin-logo-lockup-dark.svg" alt="Worldcoin Logo" className="w-200" />
+                <img src="/Worldcoin-logo-lockup-dark.svg" alt="Worldcoin Logo" className="w-200" />
               )}
             </div>
           </div>
@@ -119,9 +123,9 @@ const ViewNote: NextPage = () => {
             <p>Powered by: </p>
             <div>
               {isDarkMode ? (
-                <img src="Worldcoin-logo-lockup-light.svg" alt="Worldcoin Logo" className="w-200" />
+                <img src="/Worldcoin-logo-lockup-light.svg" alt="Worldcoin Logo" className="w-200" />
               ) : (
-                <img src="Worldcoin-logo-lockup-dark.svg" alt="Worldcoin Logo" className="w-200" />
+                <img src="/Worldcoin-logo-lockup-dark.svg" alt="Worldcoin Logo" className="w-200" />
               )}
             </div>
           </div>
@@ -147,7 +151,6 @@ const ViewNote: NextPage = () => {
                 </div>
                 <div className="flex flex-col mb-4">
                   <span className="block text-xl font-semibold mb-2">Score: {votes[index]?.score.toString()}</span>
-                  
                 </div>
                 <div className="flex flex-col mb-4">
                   <span className="block text-xl font-semibold mb-2">Rate this note</span>

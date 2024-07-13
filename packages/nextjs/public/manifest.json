@@ -1,5 +1,5 @@
 {
-  "name": "Scaffold-ETH 2 DApp",
-  "description": "A DApp built with Scaffold-ETH",
-  "iconPath": "logo.svg"
+  "name": "Oh Snap!",
+  "description": "A MetaMask Snap dApp to provide context for any contract",
+  "iconPath": "logo.png"
 }
