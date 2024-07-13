@@ -80,6 +80,26 @@ We deployed our contracts on Zircuit and manually added the config for the front
 
 - [Zircuit manual network config](https://github.com/chain-notes-brussels/chain-notes-snap/blob/d71b19303b4d260dab5b9d66f40d89af665c750b/packages/nextjs/utils/scaffold-eth/morechains.ts)
 
+## Smart Contracts overview
+We closely analyzed Vitalik Buterin's blog post to understand the implementation of the x dot com algorithm and created a simplified version for our smart contracts. Our system has two types of participants: NoteAuthors and NoteVoters. Each author can vote on a contract only once, and each voter can vote on a note only once. The available voting options are SOMEWHAT_HELPFUL, HELPFUL, and NOT_HELPFUL.
+
+Notes can be tagged as "consideredHelpful" similar to Twitter's community notes. A note needs a score of 40 or more, with over 10 votes, to be tagged as such. The score is calculated using the following formula:
+
+((x * 80) + (y * 40)) / z
+
+Where:
+
+x = amount of HELPFUL votes
+y = amount of SOMEWHAT_HELPFUL votes
+z = total amount of votes
+
+If a note's score falls below 10 after being tagged as "consideredHelpful," the tag will be removed. We may adjust these values in the future, but for now, this serves as our MVP. Only "consideredHelpful" notes are displayed on the dashboard, and the highest voted note is shown in the MetaMask snap.
+
+We also track each user's positive vs. negative ratio to potentially implement a voting prediction system similar to x dot com's, which would require some off-chain computation.
+
+For chains that support World ID, it serves as an identification layer for writing and voting on notes.
+
+The note text is stored on IPFS, with only the URI stored within the contract.
 
 ## Links
 
