@@ -13,6 +13,23 @@
 - 🧱 **Sybil resistant**: Using Worldcoin WorldID ensures that every person can only vote once on a note.
 - ⛓️ **Available on all chains**: Chain Notes is available on all EVM chains!
 
+
+## Diagram
+
+![dashboard 1](assets/diagram.png)
+
+## Screenshots
+
+| Landing page                      | Metamask Snap              |
+| --------------------------------- | --------------------------------- |
+| ![dashboard 1](screenshots/1.png) | ![dashboard 2](screenshots/2.png) |
+
+|  Create Note                          | View note                      |
+| --------------------------------- | --------------------------------- |
+| ![dashboard 3](screenshots/3.png) | ![dashboard 4](screenshots/4.png) |
+
+
+
 ## Bounties
 
 ### Worldcoin
