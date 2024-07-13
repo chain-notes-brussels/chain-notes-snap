@@ -11,16 +11,16 @@ base-sepolia = "${BASE_SEPOLIA_RPC}"
 arbitrum-sepolia = "${ARBITRUM_SEPOLIA_RPC}"
 morph-holesky = "${MORPH_HOLESKY_RPC}"
 scroll-sepolia = "${SCROLL_SEPOLIA_RPC}"
-linea-sepolia = "${LINNEA_SEPOLIA_RPC}"
+linea-sepolia = "${LINEA_SEPOLIA_RPC}"
 zircuit = "${ZIRCUIT_TESTNET_RPC}"
 apechain = "${APECHAIN_JENKINS_RPC}"
 zero-sepolia = "${ZERO_SEPOLIA_RPC}"
 
 [etherscan]
 sepolia = { key = "${SEPOLIA_API_KEY}", url = "https://api-sepolia.etherscan.io/api" }
-base-sepolia = { key = "${BASE_API_KEY}", chain = 84532, url = "https://api-sepolia.blastscan.io/api" }
+base-sepolia = { key = "${BASE_API_KEY}", chain = 84532, url = "https://api-sepolia.basescan.org/api" }
 arbitrum-sepolia = { key = "${ARBITRUM_API_KEY}", chain = 421614, url = "https://api-sepolia.arbiscan.io/api" }
-scroll-sepolia = { key = "{SCROLL_API_KEY}", chain = 534351, url = "https://api-sepolia.scrollscan.com/api" } 
-linea-sepolia = { key = "{LINEA_API_KEY}", chain = 59141, url = "https://api-sepolia.lineascan.build/api" }
+scroll-sepolia = { key = "${SCROLL_API_KEY}", chain = 534351, url = "https://api-sepolia.scrollscan.com/api" } 
+linea-sepolia = { key = "${LINEA_API_KEY}", chain = 59141, url = "https://api-sepolia.lineascan.build/api" }
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
