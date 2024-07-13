@@ -5,9 +5,9 @@
   <a href="https://chain-notes.vercel.app/">Website</a>
 </h4>
 
-🫰 Always falling for rugs and scams? Afraid to claim airdrops because you're unsure if the contract is safe? Chain Notes provides context about a contract, before a transaction. The context can show if a contract is malicious or safe, or provide other insightful information. What is shown is based on notes that are linked to an address, and voted on by the community. The voting logic is inspired on Twitter/X's implementation of Community Notes and [Vitalik's blog post](https://vitalik.eth.limo/general/2023/08/16/communitynotes.html).
+🫰 Always falling for rugs and scams? Afraid to claim airdrops because you're unsure if the contract is safe? Chain Notes provides context about a contract, before a transaction. The context can show if a contract is malicious or safe, or provide other insightful information. What is shown is based on notes that are linked to an address, and voted on by the community. The voting logic is a slightly simplified version on Twitter/X's voting algorithm of Community Notes and we used [Vitalik's blog post](https://vitalik.eth.limo/general/2023/08/16/communitynotes.html) for guidance. We have set the contract up in such a way so that we can easily implement the full algorithm with some offchain computing when we continue after the hackathon.
 
-⚙️ Built using NextJS, Foundry, Metamask Snap, WorldCoin and The Graph.
+⚙️ Built using NextJS, Foundry, Metamask Snap, World ID and Filecoin/IPFS.
 
 - ✅ **User friendly UX**: Our Metamask Snap shows the most useful note/context before the user approves a transaction, to ensure the user does not interact with any malicious contracts.
 - 🧱 **Sybil resistant**: Using Worldcoin WorldID ensures that every person can only vote once on a note.
