@@ -34,17 +34,25 @@
 
 ### Worldcoin
 
-### Base - Best Consumer App UX
-
-Our dApp is deployed on Base testnet. Our dApp provides context to contracts before approving a transaction, which can be used to warn users about malicious contracts. We think this is a great improvement to UX, since it's not intrusive and keeps users informed and safe.
-
-### Arbitrum - Best General Project Built on Arbitrum Technology
-
-Deployed our project on Arbitrum testnet.
+Our app uses zero-knowledge proofs using World ID for identity verification for both note authors as well as note voters. We think that this tool is needed in order expect an elevated level of quality of notes and votes, since it will be attatched to your identity. The protocol would not hold much value if it was spamable and World ID is the perfect tool to prevent this.
 
 ### Metamask Linea
 
+This project was designed and built from the ground up with snaps in mind. We saw snaps being the perfect medium of communication these community notes in a easy way for users. We envisioned this project to be a helpful tool for people new to DeFi in order to mitigate the risk of interacting with, for example, phising Uniswap links. With this project being a snap, the information will be shown to the user right before the transaction is signed, and potentially saving new users their money.
+
 We created a metamask snap ([in a seperate repo](https://github.com/chain-notes-brussels/snap)) and deployed to Linea testnet.
+
+### Filecoin
+
+Since these written notes are long string, it is not an option to store them on an evm chain. We didn't want to opt into centralized hosting for this either since we wanted to build a decantralized and tamperproof system. Because of this, we took inspiration from erc721's usage of IPFS and deployed our notes, along with some more data, as JSON to IPFS, and are only storing the ipfs URI on chain as a note identification on what to retrieve for the snap. We are happy with this design and 
+
+### Base
+
+Our dApp is deployed on Base testnet. Our dApp provides community provided context to contracts before approving a transaction, which can be used to warn users about malicious contracts, as well as ensuring users they are communicating with the contract they expect. We think this is a great improvement to UX, since it's not intrusive and keeps users informed and safe. It was also the perfect chain to deploy to since it supports world ID, which makes it the perfect chain to showcase the fully featured app.
+
+### Arbitrum
+
+Deployed our project on Arbitrum testnet. We thought this fitted the DeSoc narrative mentioned in the bounty descriptions because we view this app as adding a social layer, of contract and wallet reputations, on top of the blockchain borrowing from social media concepts from x dot com.
 
 ### Morph
 
@@ -52,17 +60,14 @@ We deployed our contracts on Morph Holesky and manually added the config for the
 
 - [Manual network config](https://github.com/chain-notes-brussels/chain-notes-snap/blob/d71b19303b4d260dab5b9d66f40d89af665c750b/packages/nextjs/utils/scaffold-eth/morechains.ts)
 
-### Scroll - Best Project on Scroll
+### Scroll
 
-### Neon EVM - Best Use Case of Neon EVM
+We deployed our contracts to scroll network.
 
-We deployed our contracts to the Neon EVM.
-
-### ApeCoin - Best Dapp
+### ApeCoin
 
 We deployed our contracts to the ApeChain. Also we added custom config for the network on the frontend, since it was not available in viem and scaffold by default.
 - [Manual network config](https://github.com/chain-notes-brussels/chain-notes-snap/blob/d71b19303b4d260dab5b9d66f40d89af665c750b/packages/nextjs/utils/scaffold-eth/morechains.ts)
-
 
 ### Zerion - Best build on ZERϴ Network
 
