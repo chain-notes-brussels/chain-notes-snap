@@ -1,5 +1,5 @@
 import * as chains from "viem/chains";
-import { zircuit, apeChain, zerion } from "./utils/scaffold-eth/morechains";
+import { zircuit, apeChain, zerion, morph } from "./utils/scaffold-eth/morechains";
 
 export type ScaffoldConfig = {
   targetNetworks: readonly chains.Chain[];
@@ -21,7 +21,8 @@ const scaffoldConfig = {
     chains.lineaSepolia,
     zircuit,
     apeChain,
-    zerion
+    zerion,
+    morph
   ],
 
   // The interval at which your front-end polls the RPC servers for new data

@@ -82,3 +82,35 @@ export const zerion = defineChain(
     },
 
 )
+
+
+
+export const morph = defineChain(
+    {
+        id: 2810,
+        network: 'Morph Holesky Testnet',
+        name: 'Morph Holesky Testnet',
+        nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
+        rpcUrls: {
+            default: {
+                http: ['https://rpc-quicknode-holesky.morphl2.io'],
+            },
+            public: {
+                http: ['https://rpc-quicknode-holesky.morphl2.io'],
+            },
+        },
+        blockExplorers: {
+            blockscout: {
+                name: 'Blockscout',
+                url: 'https://explorer-holesky.morphl2.io',
+            },
+            default: {
+                name: 'Blockscout',
+                url: 'https://explorer-holesky.morphl2.io',
+            },
+        },
+        testnet: true,
+
+    },
+
+)
