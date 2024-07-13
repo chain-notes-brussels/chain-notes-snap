@@ -58,7 +58,7 @@ contract Notes {
     /// @dev The amount of different ratoings for a specific note
     mapping(address contractAddress => mapping(uint16 index => mapping(CNDataTypes.Rating rating => uint32 amount))) public amountOfRating;
 
-    // store score info
+    /// @dev store score info
     mapping(address contractAddress => mapping(uint16 index => CNDataTypes.NoteScore)) public scoreInfoOf;
 
     /// @dev The rating weight of a user
