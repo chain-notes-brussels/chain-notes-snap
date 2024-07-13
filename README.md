@@ -44,7 +44,7 @@ We created a metamask snap ([in a seperate repo](https://github.com/chain-notes-
 
 ### Filecoin
 
-Since these written notes are long string, it is not an option to store them on an evm chain. We didn't want to opt into centralized hosting for this either since we wanted to build a decantralized and tamperproof system. Because of this, we took inspiration from erc721's usage of IPFS and deployed our notes, along with some more data, as JSON to IPFS, and are only storing the ipfs URI on chain as a note identification on what to retrieve for the snap. We are happy with this design and 
+Since these written notes are long string, it is not an option to store them on an evm chain. We didn't want to opt into centralized hosting for this either since we wanted to build a decantralized and tamperproof system. Because of this, we took inspiration from erc721's usage of IPFS and deployed our notes, along with some more data, as JSON to IPFS, and are only storing the ipfs URI on chain as a note identification on what to retrieve for the snap. We decided early on this would be the most logical way to do it, and are very happy with this design.
 
 ### Base
 
