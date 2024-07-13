@@ -23,7 +23,7 @@ contract Notes {
     using ByteHasher for bytes;
 
     /// @dev Keep track of if we are using worldId
-    bool useWordlId;
+    bool public useWordlId;
 
     /// @dev contract instance for worldId prover
     IWorldID worldId;
@@ -43,8 +43,10 @@ contract Notes {
     /// @dev The World ID group ID (always 1)
     uint256 internal immutable groupId = 1;
 
+    /// @dev store status if user written note for certain contract
     mapping(address user => mapping(address contractAddress => bool writtenNote)) public userWrittenNoteFor;
 
+    /// @dev store status if user voted on a certain ntoe
     mapping(address user => mapping(address contractAddress => mapping(uint16 index => bool voted))) public userVotedOnNote;
 
     /// @dev Array of notes for a specific contract address
@@ -56,6 +58,7 @@ contract Notes {
     /// @dev The amount of different ratoings for a specific note
     mapping(address contractAddress => mapping(uint16 index => mapping(CNDataTypes.Rating rating => uint32 amount))) public amountOfRating;
 
+    /// @dev store score info
     mapping(address contractAddress => mapping(uint16 index => CNDataTypes.NoteScore)) public scoreInfoOf;
 
     /// @dev The rating weight of a user
@@ -125,7 +128,6 @@ contract Notes {
         _note = CNDataTypes.Note({
             noteWriter: msg.sender,
             uri: _uri,
-            score: 0,
             sentiment: _sentiment
         });
 
@@ -267,7 +269,17 @@ contract Notes {
         );
     }
 
+    /**
+     * @notice
+     *  getter function to getting all notes of a contract
+     *
+     * @param _contractAddress address of contract we want to check
+     *
+     * @return _notes array of notes associated with contract
+     *
+     */
     function retrieveContractNotes(address _contractAddress) external view returns (CNDataTypes.Note[] memory _notes) {
+        // retrieve notes
         _notes = notesOf[_contractAddress];
     }
 }
