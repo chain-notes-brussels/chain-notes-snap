@@ -642,6 +642,11 @@ const deployedContracts = {
         },
         {
           type: "error",
+          name: "NOT_A_CONTRACT",
+          inputs: [],
+        },
+        {
+          type: "error",
           name: "YOU_HAVE_ALREADY",
           inputs: [
             {
@@ -1289,6 +1294,11 @@ const deployedContracts = {
             },
           ],
           anonymous: false,
+        },
+        {
+          type: "error",
+          name: "NOT_A_CONTRACT",
+          inputs: [],
         },
         {
           type: "error",
@@ -1942,6 +1952,11 @@ const deployedContracts = {
         },
         {
           type: "error",
+          name: "NOT_A_CONTRACT",
+          inputs: [],
+        },
+        {
+          type: "error",
           name: "YOU_HAVE_ALREADY",
           inputs: [
             {
@@ -2592,6 +2607,11 @@ const deployedContracts = {
         },
         {
           type: "error",
+          name: "NOT_A_CONTRACT",
+          inputs: [],
+        },
+        {
+          type: "error",
           name: "YOU_HAVE_ALREADY",
           inputs: [
             {
@@ -2607,7 +2627,7 @@ const deployedContracts = {
   },
   84532: {
     Notes: {
-      address: "0x4a71867b2739f0976ccc950b643582ca94e6ca28",
+      address: "0x640a8be4be3b18b35a7d7bbbab2444ad4d5fc87a",
       abi: [
         {
           type: "constructor",
@@ -3239,6 +3259,11 @@ const deployedContracts = {
             },
           ],
           anonymous: false,
+        },
+        {
+          type: "error",
+          name: "NOT_A_CONTRACT",
+          inputs: [],
         },
         {
           type: "error",
@@ -3257,7 +3282,7 @@ const deployedContracts = {
   },
   421614: {
     Notes: {
-      address: "0x83277e9fe7cc93ad2d5986b87659a6fa80a48ac0",
+      address: "0x3b89a9d1026e29c7959154e5c826159c720007cb",
       abi: [
         {
           type: "constructor",
@@ -3889,6 +3914,11 @@ const deployedContracts = {
             },
           ],
           anonymous: false,
+        },
+        {
+          type: "error",
+          name: "NOT_A_CONTRACT",
+          inputs: [],
         },
         {
           type: "error",
@@ -3904,10 +3934,88 @@ const deployedContracts = {
       ],
       inheritedFunctions: {},
     },
+    MockContractA: {
+      address: "0x912f109a2d84e83096ea18b14e9c41875daef9fd",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractB: {
+      address: "0xc15bc025d57bec9fa39e18701b4f0b3b5a067b6c",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractC: {
+      address: "0xa52a05eb2eb48499d5beb6d89d39ddb41854f47c",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
   },
   534351: {
     Notes: {
-      address: "0x27ab308b932f1c9b7119b09658df81d59278fbf4",
+      address: "0x15042ce1ff21659ce9ceb280618ca562526d5639",
       abi: [
         {
           type: "constructor",
@@ -4542,6 +4650,11 @@ const deployedContracts = {
         },
         {
           type: "error",
+          name: "NOT_A_CONTRACT",
+          inputs: [],
+        },
+        {
+          type: "error",
           name: "YOU_HAVE_ALREADY",
           inputs: [
             {
@@ -4550,6 +4663,84 @@ const deployedContracts = {
               internalType: "enum CNDataTypes.Actions",
             },
           ],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractA: {
+      address: "0x19658e00aecd11b950a898527bc24b2a8a536955",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractB: {
+      address: "0x5fc97cb680b5f4364e2e5555e8c6c00c6e6df0ed",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractC: {
+      address: "0x9487d00867ef4b5c16c72ea8115482079cbd6121",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
         },
       ],
       inheritedFunctions: {},
@@ -5189,6 +5380,11 @@ const deployedContracts = {
             },
           ],
           anonymous: false,
+        },
+        {
+          type: "error",
+          name: "NOT_A_CONTRACT",
+          inputs: [],
         },
         {
           type: "error",
@@ -5839,6 +6035,11 @@ const deployedContracts = {
             },
           ],
           anonymous: false,
+        },
+        {
+          type: "error",
+          name: "NOT_A_CONTRACT",
+          inputs: [],
         },
         {
           type: "error",
