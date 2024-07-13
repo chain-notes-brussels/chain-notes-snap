@@ -2938,8 +2938,86 @@ const deployedContracts = {
     },
   },
   84532: {
+    MockContractA: {
+      address: "0xbfc3a250aca9af6f3399d2056bdb5786f9ec6b3e",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractB: {
+      address: "0x75836c1a9cf7b2b2bfa30f4d943169167828a964",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractC: {
+      address: "0x4250f996882e56b0d0a2daddf3ea0bf9904fec5e",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
     Notes: {
-      address: "0x640a8be4be3b18b35a7d7bbbab2444ad4d5fc87a",
+      address: "0x310256c0b02b1ef36a537427885e495533c13dee",
       abi: [
         {
           type: "constructor",
@@ -5708,6 +5786,84 @@ const deployedContracts = {
               internalType: "enum CNDataTypes.Actions",
             },
           ],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractA: {
+      address: "0x3b89a9d1026e29c7959154e5c826159c720007cb",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractB: {
+      address: "0x912f109a2d84e83096ea18b14e9c41875daef9fd",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MockContractC: {
+      address: "0xc15bc025d57bec9fa39e18701b4f0b3b5a067b6c",
+      abi: [
+        {
+          type: "function",
+          name: "magic",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "mySuperDuperFunNumber",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
         },
       ],
       inheritedFunctions: {},
