@@ -1,3 +1,4 @@
+import { apeChain, morph, zerion, zircuit } from "./utils/scaffold-eth/morechains";
 import * as chains from "viem/chains";
 
 export type ScaffoldConfig = {
@@ -10,7 +11,18 @@ export type ScaffoldConfig = {
 
 const scaffoldConfig = {
   // The networks on which your DApp is live
-  targetNetworks: [chains.foundry],
+  targetNetworks: [
+    chains.sepolia,
+    chains.baseSepolia,
+    chains.arbitrumSepolia,
+    chains.scrollSepolia,
+    chains.neonDevnet,
+    chains.lineaSepolia,
+    zircuit,
+    apeChain,
+    zerion,
+    morph,
+  ],
 
   // The interval at which your front-end polls the RPC servers for new data
   // it has no effect if you only target the local network (default is 4000)

@@ -34,11 +34,17 @@
     "verify": "yarn workspace @se-2/foundry verify"
   },
   "devDependencies": {
+    "@types/prop-types": "^15",
     "husky": "~8.0.3",
     "lint-staged": "~13.2.2"
   },
   "packageManager": "yarn@3.2.3",
   "engines": {
     "node": ">=18.17.0"
+  },
+  "dependencies": {
+    "@worldcoin/idkit": "^1.2.2",
+    "prop-types": "^15.8.1",
+    "react-shadow": "^20.5.0"
   }
 }
