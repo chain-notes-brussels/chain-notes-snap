@@ -35,9 +35,11 @@ We deployed our contracts on Zircuit and manually added the config for the front
 ## Links
 
 - [Live dApp on Vercel](https://chain-notes.vercel.app/)
+- [Github: Solidity contract and frontend dashboard](https://github.com/chain-notes-brussels/chain-notes-snap)
+- [Github: Metamask Snap](https://github.com/chain-notes-brussels/snap)
 
 ### Deployed contracts
-- [Notes.sol on Sepolia]()
+- [Notes.sol on Sepolia](https://sepolia.etherscan.io/address/0x62a4d5b0f16d8eb9065310afbb7f2622d981f124)
 
 
 ## Team

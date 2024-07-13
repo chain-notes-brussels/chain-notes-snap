@@ -3,13 +3,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import type { NextPage } from "next";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { Address } from "~~/components/scaffold-eth";
 import { isAddress } from "viem";
-
-ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ViewNote: NextPage = () => {
   const { address } = useParams();
@@ -19,8 +15,8 @@ const ViewNote: NextPage = () => {
 
   const { data: notesData, refetch } = useScaffoldReadContract({
     contractName: "Notes",
-    functionName: "notesOf",
-    args: [address, 1n],
+    functionName: "retrieveContractNotes",
+    args: [address],
   });
 
   const { writeContractAsync: writeNotesContract, isPending } = useScaffoldWriteContract("Notes");
@@ -61,37 +57,33 @@ const ViewNote: NextPage = () => {
     }
   };
 
-  const getPieChartData = (upVotes: number, downVotes: number) => {
-    return {
-      labels: ['Up Votes', 'Down Votes'],
-      datasets: [
-        {
-          label: 'Votes',
-          data: [upVotes, downVotes],
-          backgroundColor: ['#36A2EB', '#FF6384'],
-          hoverBackgroundColor: ['#36A2EB', '#FF6384'],
-        },
-      ],
-    };
-  };
 
   return (
     <div className="container mx-auto p-8">
       <h1 className="text-center mb-4 mt-5">
         <span className="block text-4xl font-bold">View Note</span>
+
+        <div className="flex justify-center items-center space-x-2 flex-col sm:flex-row">
+            <p className="my-2 font-medium">Contract Address:</p>
+            <Address address={address} />
+          </div>
       </h1>
       {validAddress ? (
         <div className="flex flex-col items-center">
-          {notes.map((note, index) => (
+          
+          {notes
+          .sort((a, b) => b.score - a.score) // Sort notes, highest score first
+          .map((note, index) => (
             <div key={index} className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-8 m-8">
+              
+
+
               <div className="flex flex-col mb-4">
-                <span className="block text-xl font-semibold mb-2">Address</span>
-                <Address size="xl" address={note.noteWriter} />
-              </div>
-              <div className="flex flex-col mb-4">
-                <span className="block text-xl font-semibold mb-2">Note Content</span>
-                <p>{note.uri}</p>
-              </div>
+              <p className="font-medium my-0 break-words mb-2">{note.sentiment ? "✅ Positive note" : "❌ Negative note"}</p>
+                <div className="bg-secondary rounded-3xl text-sm px-4 py-1.5 break-words overflow-auto">
+              
+              <pre className="whitespace-pre-wrap break-words">{note.uri}</pre>
+            </div>              </div>
               <div className="flex flex-col mb-4">
                 <span className="block text-xl font-semibold mb-2">Score</span>
                 <p>{note.score}</p>
@@ -99,10 +91,6 @@ const ViewNote: NextPage = () => {
               <div className="flex flex-col mb-4">
                 <span className="block text-xl font-semibold mb-2">Sentiment</span>
                 <p>{note.sentiment}</p>
-              </div>
-              <div className="flex flex-col mb-4">
-                <span className="block text-xl font-semibold mb-2">Vote Distribution</span>
-                <Pie data={getPieChartData(note.upVotes, note.downVotes)} />
               </div>
               <div className="flex flex-col mb-4">
                 <span className="block text-xl font-semibold mb-2">Rate this note</span>

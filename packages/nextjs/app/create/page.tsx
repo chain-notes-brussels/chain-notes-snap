@@ -11,9 +11,9 @@ const CreateNote: NextPage = () => {
   const [noteContent, setNoteContent] = useState("");
   const [isDanger, setIsDanger] = useState(false);
   const { address: connectedAccount } = useAccount();
-  const { data: NotesContractInfo } = useDeployedContractInfo("NotesContract");
+  const { data: NotesContractInfo } = useDeployedContractInfo("Notes");
 
-  const { writeContractAsync: writeNotesContractAsync } = useScaffoldWriteContract("NotesContract");
+  const { writeContractAsync: writeNotesContractAsync } = useScaffoldWriteContract("Notes");
 
   return (
     <div className="container mx-auto p-8">
@@ -62,7 +62,7 @@ const CreateNote: NextPage = () => {
                 onClick={async () => {
                   try {
                     await writeNotesContractAsync({
-                      functionName: "create",
+                      functionName: "publishNote",
                       args: [address, noteContent, isDanger],
                     });
                   } catch (err) {
