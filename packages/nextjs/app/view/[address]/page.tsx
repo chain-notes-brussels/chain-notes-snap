@@ -57,62 +57,60 @@ const ViewNote: NextPage = () => {
     }
   };
 
-
   return (
     <div className="container mx-auto p-8">
       <h1 className="text-center mb-4 mt-5">
         <span className="block text-4xl font-bold">View Note</span>
 
         <div className="flex justify-center items-center space-x-2 flex-col sm:flex-row">
-            <p className="my-2 font-medium">Contract Address:</p>
-            <Address address={address} />
-          </div>
+          <p className="my-2 font-medium">Contract Address:</p>
+          <Address address={address} />
+        </div>
       </h1>
       {validAddress ? (
-        <div className="flex flex-col items-center">
-          
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {notes
-          .sort((a, b) => b.score - a.score) // Sort notes, highest score first
-          .map((note, index) => (
-            <div key={index} className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-8 m-8">
-              
-
-
-              <div className="flex flex-col mb-4">
-              <p className="font-medium my-0 break-words mb-2">{note.sentiment ? "✅ Positive note" : "❌ Negative note"}</p>
-                <div className="bg-secondary rounded-3xl text-sm px-4 py-1.5 break-words overflow-auto">
-              
-              <pre className="whitespace-pre-wrap break-words">{note.uri}</pre>
-            </div>              </div>
-              <div className="flex flex-col mb-4">
-                <span className="block text-xl font-semibold mb-2">Score</span>
-                <p>{note.score}</p>
+            .sort((a, b) => b.score - a.score) // Sort notes, highest score first
+            .map((note, index) => (
+              <div key={index} className="bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-8">
+                <div className="flex flex-col mb-4">
+                  <p className="font-medium my-0 break-words mb-2">{note.sentiment ? "✅ Positive note" : "❌ Negative note"}</p>
+                  <div className="bg-secondary rounded-3xl text-sm px-4 py-1.5 break-words overflow-auto">
+                    <pre className="whitespace-pre-wrap break-words">{note.uri}</pre>
+                  </div>
+                </div>
+                <div className="flex flex-col mb-4">
+                  <span className="block text-xl font-semibold mb-2">Score</span>
+                  <p>{note.score}</p>
+                </div>
+                <div className="flex flex-col mb-4">
+                  <span className="block text-xl font-semibold mb-2">Rate this note</span>
+                  <div className="flex">
+                    <button
+                      onClick={() => handleVote(index, 0)}
+                      className="btn flex-1 rounded-none first:rounded-l-lg last:rounded-r-lg"
+                      disabled={isPending}
+                    >
+                      HELPFUL
+                    </button>
+                    <button
+                      onClick={() => handleVote(index, 2)}
+                      className="btn flex-1 rounded-none first:rounded-l-lg last:rounded-r-lg"
+                      disabled={isPending}
+                    >
+                      SOMEWHAT_HELPFUL
+                    </button>
+                    <button
+                      onClick={() => handleVote(index, 1)}
+                      className="btn flex-1 rounded-none first:rounded-l-lg last:rounded-r-lg"
+                      disabled={isPending}
+                    >
+                      NOT_HELPFUL
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="flex flex-col mb-4">
-                <span className="block text-xl font-semibold mb-2">Sentiment</span>
-                <p>{note.sentiment}</p>
-              </div>
-              <div className="flex flex-col mb-4">
-                <span className="block text-xl font-semibold mb-2">Rate this note</span>
-                <select
-                  value={ratings[index]}
-                  onChange={(e) => handleRatingChange(index, Number(e.target.value))}
-                  className="select select-bordered w-full max-w-xs"
-                >
-                  <option value={0}>HELPFUL</option>
-                  <option value={1}>NOT_HELPFUL</option>
-                  <option value={2}>SOMEWHAT_HELPFUL</option>
-                </select>
-                <button
-                  onClick={() => handleVote(index, ratings[index])}
-                  className="btn btn-primary mt-4"
-                  disabled={isPending}
-                >
-                  {isPending ? "Submitting..." : "Vote"}
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
       ) : (
         <div className="text-center">
