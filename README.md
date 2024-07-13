@@ -89,16 +89,14 @@ We deployed our contracts on Zircuit and manually added the config for the front
 - [Github: Metamask Snap](https://github.com/chain-notes-brussels/snap)
 
 ### Deployed contracts
-- [Notes.sol on Sepolia](https://sepolia.etherscan.io/address/0x62a4d5b0f16d8eb9065310afbb7f2622d981f124)
-- [Notes.sol on Base Sepolia](https://sepolia.basescan.org/address/0x3B89a9D1026E29c7959154E5c826159C720007cb)
-- [Notes.sol on Arbitrum Sepolia](https://sepolia.arbiscan.io/address/0x83277E9FE7Cc93Ad2D5986b87659A6fa80A48Ac0)
-- [Notes.sol on Scroll Sepolia](https://sepolia.scrollscan.com/address/0x1e2818770eEaE7A4B958109d4915Ea3e8DA572c6)
-- [Notes.sol on Linea Sepolia](https://api-sepolia.lineascan.build/address/0x4CC142ed6B170CC9e7cbecca486B79cd88727821)
-- [Notes.sol on ApeChain](https://jenkins.explorer.caldera.xyz/address/0x83277E9FE7Cc93Ad2D5986b87659A6fa80A48Ac0)
-- [Notes.sol on Zircuit](https://explorer.zircuit.com/address/0xD75595cCA0721f30a6449DD2b641Bc2E4FE44558)
+- [Notes.sol on Base Sepolia](https://base-sepolia.blockscout.com/address/0xDeaDDEaDDeAdDeAdDEAdDEaddeAddEAdDEAd0001)
+- [Notes.sol on Arbitrum Sepolia](https://sepolia-explorer.arbitrum.io/address/0xa52a05eb2eb48499d5beb6d89d39ddb41854f47c)
+- [Notes.sol on Scroll Sepolia](https://sepolia.scrollscan.com/address/0x9487d00867ef4b5c16c72ea8115482079cbd6121)
+- [Notes.sol on Linea Sepolia](https://api-sepolia.lineascan.build/address/0xc5972f3f7f43bd3692d9e5ea0c2af96d56d0ee28)
+- [Notes.sol on ApeChain](0xa52A05eB2Eb48499d5bEB6d89d39dDB41854f47C)
+- [Notes.sol on Zircuit](https://explorer.zircuit.com/address/0x77C461C1E180DD6A08A17E74bFb5207e44c7aC7f)
+- [Notes.sol on Morph](https://explorer-holesky.morphl2.io/address/0x3B89a9D1026E29c7959154E5c826159C720007cb)
 - [Notes.sol on Zero](https://explorer.zero.network/address/0x83277E9FE7Cc93Ad2D5986b87659A6fa80A48Ac0)
-- [Notes.sol on Morph](https://explorer-holesky.morphl2.io/address/0x83277E9FE7Cc93Ad2D5986b87659A6fa80A48Ac0)
-- [Notes.sol on Neon]()
 
 ### References
 - [Vitalik blog - What do I think about Community Notes?](https://vitalik.eth.limo/general/2023/08/16/communitynotes.html)
