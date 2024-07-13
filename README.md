@@ -24,11 +24,11 @@
 
 ## Screenshots
 
-| Create not                      | Worldcoin popup              |
+| Create note                      | Worldcoin pop-up              |
 | --------------------------------- | --------------------------------- |
 | ![dashboard 1](assets/create.png) | ![dashboard 2](assets/worldcoin.png) |
 
-|  View notes                          | Metamask Snap Popup                      |
+|  View notes                          | Metamask Snap pop-up                      |
 | --------------------------------- | --------------------------------- |
 | ![dashboard 3](assets/view.png) | ![dashboard 4](assets/popup.png) |
 

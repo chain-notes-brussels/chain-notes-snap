@@ -42,9 +42,8 @@ const Home: NextPage = () => {
 
             {/*  here */}
             <div className="flex justify-center">
-              <button
+              <button className="btn btn-primary"
                 onClick={requestSnap}
-                className="bg-black text-white p-3 m-auto transition transform hover:bg-gray-900 hover:shadow-lg hover:scale-105 active:bg-gray-700 active:shadow-md active:scale-95"
               >
                 Get Your Snap Now!
               </button>
