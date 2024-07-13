@@ -22,6 +22,12 @@ contract Notes {
     // Helper for worldId proving actions
     using ByteHasher for bytes;
 
+    //     _____ __        __
+    //    / ___// /_____ _/ /____  _____
+    //    \__ \/ __/ __ `/ __/ _ \/ ___/
+    //   ___/ / /_/ /_/ / /_/  __(__  )
+    //  /____/\__/\__,_/\__/\___/____/
+
     /// @dev Keep track of if we are using worldId
     bool public useWordlId;
 
@@ -67,6 +73,12 @@ contract Notes {
     /// @dev A users rating on a specific note
     mapping(address user => mapping(address contractAddress => mapping(uint16 index => CNDataTypes.Rating))) public userRatingOfNote;
 
+    //     ______                 __                  __
+    //    / ____/___  ____  _____/ /________  _______/ /_____  _____
+    //   / /   / __ \/ __ \/ ___/ __/ ___/ / / / ___/ __/ __ \/ ___/
+    //  / /___/ /_/ / / / (__  ) /_/ /  / /_/ / /__/ /_/ /_/ / /
+    //  \____/\____/_/ /_/____/\__/_/   \__,_/\___/\__/\____/_/
+
     constructor(
         bool _useWorldId,
         address _worldId,
@@ -90,6 +102,12 @@ contract Notes {
             .encodePacked(abi.encodePacked(_appId).hashToField(), _voteId)
             .hashToField();
     }
+
+    //      ______     __                        __   ______                 __  _
+    //     / ____/  __/ /____  _________  ____ _/ /  / ____/_  ______  _____/ /_(_)___  ____  _____
+    //    / __/ | |/_/ __/ _ \/ ___/ __ \/ __ `/ /  / /_  / / / / __ \/ ___/ __/ / __ \/ __ \/ ___/
+    //   / /____>  </ /_/  __/ /  / / / / /_/ / /  / __/ / /_/ / / / / /__/ /_/ / /_/ / / / (__  )
+    //  /_____/_/|_|\__/\___/_/  /_/ /_/\__,_/_/  /_/    \__,_/_/ /_/\___/\__/_/\____/_/ /_/____/
 
     /**
      * @notice
@@ -268,6 +286,12 @@ contract Notes {
             notesOf[_contractAddress][_noteIndex]
         );
     }
+
+    //   _    ___                 ______                 __  _
+    //  | |  / (_)__ _      __   / ____/_  ______  _____/ /_(_)___  ____  _____
+    //  | | / / / _ \ | /| / /  / /_  / / / / __ \/ ___/ __/ / __ \/ __ \/ ___/
+    //  | |/ / /  __/ |/ |/ /  / __/ / /_/ / / / / /__/ /_/ / /_/ / / / (__  )
+    //  |___/_/\___/|__/|__/  /_/    \__,_/_/ /_/\___/\__/_/\____/_/ /_/____/
 
     /**
      * @notice
