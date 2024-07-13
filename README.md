@@ -79,6 +79,7 @@ We deployed our contracts on Zircuit and manually added the config for the front
 ## Links
 
 - [Live dApp on Vercel](https://chain-notes.vercel.app/)
+- [Endpoint to create Note on IPFS](https://api-phi-vert.vercel.app/createNewNote)
 - [Github: Solidity contract and frontend dashboard](https://github.com/chain-notes-brussels/chain-notes-snap)
 - [Github: Metamask Snap](https://github.com/chain-notes-brussels/snap)
 
