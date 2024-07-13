@@ -40,35 +40,45 @@ const CreateNote: NextPage = () => {
   
     try {
       // Pass Note to the endpoint and store response
-      // console.log("note_ipfs", note_ipfs);
-      // const response = await axios.post("http://3.122.247.155:3000/createNewNote", {
-      //   note: note_ipfs,
-      // });
+      console.log("note_ipfs", note_ipfs);
+      const response = await axios.post("http://3.122.247.155:3000/createNewNote", {
+        note: note_ipfs,
+      });
   
-      // console.log("response", response.status);
-      // if (!response.status === 200) {
-      //   throw new Error("Failed to store note in IPFS");
-      // }
+      console.log("response", response.status);
+      if (!response.status === 200) {
+        throw new Error("Failed to store note in IPFS");
+      }
       
-      // console.log("CID", response.data.cid["/"]);
+      console.log("CID", response.data.cid["/"]);
   
-      // Transform the proof object
-      const transformedProof = {
-        root: BigInt(proof!.merkle_root),
-        signal: connectedAccount,
-        nullifierHash: BigInt(proof!.nullifier_hash),
-        proof: decodeAbiParameters(
-          parseAbiParameters('uint256[8]'),
-          proof!.proof as `0x${string}`
-        )[0],
+      // Dummy proof for networks without World ID
+      let transformedProof =  {
+      root: BigInt(0),
+      signal: "0x0000000000000000000000000000000000000000",
+      nullifierHash: BigInt(0),
+      proof: Array(8).fill(BigInt(0))
+    };
 
-      };
-  
+      // If the proof is available, use it.
+      if (proof) {
+        transformedProof = {
+          root: BigInt(proof!.merkle_root),
+          signal: connectedAccount,
+          nullifierHash: BigInt(proof!.nullifier_hash),
+          proof: decodeAbiParameters(
+            parseAbiParameters('uint256[8]'),
+            proof!.proof as `0x${string}`
+          )[0],
+        };
+      }
+      
+      console.log("transformedProof", transformedProof);
       // Write the note to the contract
       await writeNotesContractAsync({
         functionName: "publishNote",
-        // args: [address, response.data.cid["/"], isDanger, transformedProof],
-        args: [address, "response.data.cid["/"]", isDanger, transformedProof],
+        args: [address, response.data.cid["/"], isDanger, transformedProof],
+        // args: [address, "response.data.cid["/"]", isDanger, transformedProof],
       });
     } catch (err) {
       console.error("Error calling create function", err);

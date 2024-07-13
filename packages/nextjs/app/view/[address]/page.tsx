@@ -3,13 +3,26 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import type { NextPage } from "next";
+import axios from "axios";
 import { isAddress } from "viem";
 import { Address } from "~~/components/scaffold-eth";
+import { useTargetNetwork } from "~~/hooks/scaffold-eth";
+import { useTheme } from "next-themes";
+
+import { IDKitWidget, ISuccessResult, useIDKit } from '@worldcoin/idkit'
+
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const ViewNote: NextPage = () => {
+  const { targetNetwork } = useTargetNetwork();
   const { address } = useParams();
   const [notes, setNotes] = useState<any[]>([]);
+  const [proof, setProof] = useState("")
+  const { resolvedTheme } = useTheme();
+
+  const isDarkMode = resolvedTheme === "dark";
+
+  const [noteContents, setNoteContents] = useState<string[]>([]); // Array to store note contents
   const [validAddress, setValidAddress] = useState(false);
   const [ratings, setRatings] = useState<number[]>([]); // Array to store selected ratings
 
@@ -31,17 +44,28 @@ const ViewNote: NextPage = () => {
   }, [address, refetch]);
 
   useEffect(() => {
-    if (notesData) {
-      setNotes(notesData);
-      setRatings(new Array(notesData.length).fill(0)); // Initialize ratings array with default value 0 (HELPFUL)
-    }
+    const fetchNoteContents = async () => {
+      if (notesData) {
+        const contentsPromises = notesData.map(async (note: any) => {
+          try {
+            const response = await axios.post("http://3.122.247.155:3000/getNote", { uri: note.uri });
+            return response.data.content;
+          } catch (error) {
+            console.error("Error fetching note content:", error);
+            return "Failed to fetch content";
+          }
+        });
+
+        const contents = await Promise.all(contentsPromises);
+        setNotes(notesData);
+        setNoteContents(contents);
+        setRatings(new Array(notesData.length).fill(0)); // Initialize ratings array with default value 0 (HELPFUL)
+      }
+    };
+
+    fetchNoteContents();
   }, [notesData]);
 
-  const handleRatingChange = (index: number, rating: number) => {
-    const newRatings = [...ratings];
-    newRatings[index] = rating;
-    setRatings(newRatings);
-  };
 
   const handleVote = async (noteIndex: number, rating: number) => {
     const noteAddress = address; // Assuming the address is linked to the note
@@ -49,7 +73,7 @@ const ViewNote: NextPage = () => {
       console.log("Submitting vote...");
       await writeNotesContract({
         functionName: "vote",
-        args: [rating, BigInt(noteIndex), noteAddress],
+        args: [rating, BigInt(noteIndex), noteAddress, proof],
       });
       console.log("Vote submitted successfully");
     } catch (error) {
@@ -67,7 +91,52 @@ const ViewNote: NextPage = () => {
           <Address address={address} />
         </div>
       </h1>
-      {validAddress ? (
+
+      <div className="flex justify-center items-center">
+
+      {!proof && targetNetwork?.id === 84532 && (
+        
+        <div className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-4 m-4 text-center">
+          <p>We use Worldcoin World ID to verify your identity. Please sign in to continue. </p>
+          <IDKitWidget
+
+            app_id={process.env.NEXT_PUBLIC_APP_ID as `app_${string}`}
+            action={process.env.NEXT_PUBLIC_ACTION_CREATE as string}
+            signal={address} // proof will only verify if the signal is unchanged, this prevents tampering
+            onSuccess={setProof} // use onSuccess to call your smart contract
+            // no use for handleVerify, so it is removed
+            // use default verification_level (orb-only), as device credentials are not supported on-chain
+          >
+            {({ open }) => <button className="btn btn-primary" onClick={open}>Verify with World ID</button>}
+          </IDKitWidget>
+          <p>Powered by: </p>
+          <div>
+            {isDarkMode ? (
+              <img src="Worldcoin-logo-lockup-light.svg" alt="Worldcoin Logo" className="w-200" />
+            ) : (
+              <img src="Worldcoin-logo-lockup-dark.svg" alt="Worldcoin Logo" className="w-200" />
+            )}
+          </div>
+          
+        </div>)}
+        {proof && targetNetwork?.id === 84532 && (
+          <div className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-4 m-4 text-center">
+          <p>You have verified with World ID.  </p>
+          
+          <p>Powered by: </p>
+          <div>
+            {isDarkMode ? (
+              <img src="Worldcoin-logo-lockup-light.svg" alt="Worldcoin Logo" className="w-200" />
+            ) : (
+              <img src="Worldcoin-logo-lockup-dark.svg" alt="Worldcoin Logo" className="w-200" />
+            )}
+          </div>
+          
+        </div>
+        )}
+        </div>
+
+      {validAddress && notes.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {notes
             .sort((a, b) => b.score - a.score) // Sort notes, highest score first
@@ -81,7 +150,7 @@ const ViewNote: NextPage = () => {
                     {note.sentiment ? "✅ Positive note" : "❌ Negative note"}
                   </p>
                   <div className="bg-secondary rounded-3xl text-sm px-4 py-1.5 break-words overflow-auto">
-                    <pre className="whitespace-pre-wrap break-words">{note.uri}</pre>
+                    <pre className="whitespace-pre-wrap break-words">{noteContents[index]}</pre>
                   </div>
                 </div>
                 <div className="flex flex-col mb-4">
@@ -118,8 +187,10 @@ const ViewNote: NextPage = () => {
             ))}
         </div>
       ) : (
+        
         <div className="text-center">
-          <p className="text-red-500">Invalid address. Please check the URL.</p>
+          {notes.length > 0 ? (<p className="text-red-500">Invalid address. Please check the URL.</p>) : (<p >No notes for this address.</p>)}
+          
         </div>
       )}
     </div>
