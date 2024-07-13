@@ -56,21 +56,21 @@ contract CounterScript is Script {
 
             notes.publishNote(
                 address(contractA),
-                "",
+                "bafkreibkt24dhy7l5xvoagixtcdxr4l4v7fjtvuxqemtcoksf5troviba4",
                 CNDataTypes.Sentiment.POSITIVE,
                 emptyId
             );
 
             notes.publishNote(
                 address(contractB),
-                "",
+                "bafkreigt7dc5vnggawea6e6cxwd45sjwdcvaafoqcm673fawxqvjsf5lca",
                 CNDataTypes.Sentiment.POSITIVE,
                 emptyId
             );
 
             notes.publishNote(
                 address(contractC),
-                "",
+                "bafkreicg55jxkt7xc4p7zmg5s5lfpkw7et4vqxdhoqsgrstzeuozc6rkbm",
                 CNDataTypes.Sentiment.NEGATIVE,
                 emptyId
             );
