@@ -62,19 +62,19 @@ We deployed our contracts on Morph Holesky and manually added the config for the
 
 ### Scroll
 
-We deployed our contracts to scroll network.
+We deployed our contracts to scroll network. Deployment and contract verification was smooth very smooth with our tech stack which is something we truly appreciated. Really no issues with developping on scroll, which is really good!
 
 ### ApeCoin
 
 We deployed our contracts to the ApeChain. Also we added custom config for the network on the frontend, since it was not available in viem and scaffold by default.
 - [Manual network config](https://github.com/chain-notes-brussels/chain-notes-snap/blob/d71b19303b4d260dab5b9d66f40d89af665c750b/packages/nextjs/utils/scaffold-eth/morechains.ts)
 
-### Zerion - Best build on ZERϴ Network
+### Zerion
 
 We deployed our contracts on Zerio testnet. Also we added custom config for the network on the frontend, since it was not available in viem and scaffold by default.
 - [Manual network config](https://github.com/chain-notes-brussels/chain-notes-snap/blob/d71b19303b4d260dab5b9d66f40d89af665c750b/packages/nextjs/utils/scaffold-eth/morechains.ts)
 
-### Zircuit - Best Project on Zircuit
+### Zircuit
 
 We deployed our contracts on Zircuit and manually added the config for the frontend, since this is not available yet in viem and scaffold. Getting testnet tokens and deploying on Zircuit was very smooth. Only hickup we encountered was that we had to manually add network config on the frontend.
 
