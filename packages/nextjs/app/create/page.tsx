@@ -9,6 +9,8 @@ import { useDeployedContractInfo, useScaffoldWriteContract } from "~~/hooks/scaf
 import { useTargetNetwork } from "~~/hooks/scaffold-eth";
 import { IDKitWidget, ISuccessResult, useIDKit } from '@worldcoin/idkit'
 import { useTheme } from "next-themes";
+import { decodeAbiParameters, parseAbiParameters } from 'viem'
+
 
 const CreateNote: NextPage = () => {
   const { targetNetwork } = useTargetNetwork();
@@ -35,32 +37,43 @@ const CreateNote: NextPage = () => {
     
     console.log("proof", proof);
     const note_ipfs = JSON.stringify(note);
-
-
+  
     try {
       // Pass Note to the endpoint and store response
-console.log("note_ipfs", note_ipfs);
-      const response = await axios.post("http://3.122.247.155:3000/createNewNote", {
-        note : note_ipfs,
-      });
-
-      console.log("response", response.status);
-      if (!response.status === 200) {
-        throw new Error("Failed to store note in IPFS");
-      }
+      // console.log("note_ipfs", note_ipfs);
+      // const response = await axios.post("http://3.122.247.155:3000/createNewNote", {
+      //   note: note_ipfs,
+      // });
+  
+      // console.log("response", response.status);
+      // if (!response.status === 200) {
+      //   throw new Error("Failed to store note in IPFS");
+      // }
       
-      console.log("CID", response.data.cid["/"]);
+      // console.log("CID", response.data.cid["/"]);
+  
+      // Transform the proof object
+      const transformedProof = {
+        root: BigInt(proof!.merkle_root),
+        signal: connectedAccount,
+        nullifierHash: BigInt(proof!.nullifier_hash),
+        proof: decodeAbiParameters(
+          parseAbiParameters('uint256[8]'),
+          proof!.proof as `0x${string}`
+        )[0],
 
+      };
+  
       // Write the note to the contract
       await writeNotesContractAsync({
         functionName: "publishNote",
-        args: [address, response.data.cid["/"], isDanger],
+        // args: [address, response.data.cid["/"], isDanger, transformedProof],
+        args: [address, "response.data.cid["/"]", isDanger, transformedProof],
       });
     } catch (err) {
       console.error("Error calling create function", err);
     }
   };
-
   type Note = {
     chainId: number;
     commentator: string;
@@ -79,6 +92,7 @@ console.log("note_ipfs", note_ipfs);
 
       <div className="flex justify-center items-center">
 
+        {!proof && targetNetwork?.id === 84532 && (
         <div className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-4 m-4 text-center">
           <p>We use Worldcoin World ID to verify your identity. Please sign in to continue. </p>
           <IDKitWidget
@@ -101,7 +115,24 @@ console.log("note_ipfs", note_ipfs);
             )}
           </div>
           
-        </div></div>
+        </div>)}
+        {proof && targetNetwork?.id === 84532 && (
+          <div className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-4 m-4 text-center">
+          <p>You have verified with World ID.  </p>
+          
+          <p>Powered by: </p>
+          <div>
+            {isDarkMode ? (
+              <img src="Worldcoin-logo-lockup-light.svg" alt="Worldcoin Logo" className="w-200" />
+            ) : (
+              <img src="Worldcoin-logo-lockup-dark.svg" alt="Worldcoin Logo" className="w-200" />
+            )}
+          </div>
+          
+        </div>
+        )}
+
+        </div>
 
       <div className="flex justify-center items-center">
         <div className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-8 m-8">
