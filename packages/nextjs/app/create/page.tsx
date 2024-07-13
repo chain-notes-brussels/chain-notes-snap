@@ -173,7 +173,7 @@ const CreateNote: NextPage = () => {
               </label>
             </div>
             <div className="flex flex-col items-center mt-4">
-              <button className="btn btn-primary" onClick={handleCreateNote}>
+              <button className="btn btn-primary" disabled={!proof && targetNetwork?.id === 84532} onClick={handleCreateNote}>
                 Create Note
               </button>
             </div>

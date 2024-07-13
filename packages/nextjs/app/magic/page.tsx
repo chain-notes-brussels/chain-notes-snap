@@ -50,14 +50,14 @@ const MagicPage: NextPage = () => {
         <div className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-4 m-4 text-center">
           <h2 className="text-2xl font-semibold mb-4">GoodContract</h2>
           <button className="btn btn-primary" onClick={handleMagicGoodContract}>
-            Call Magic Function
+            Call Contract
           </button>
         </div>
 
         <div className="w-full max-w-lg bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-4 m-4 text-center">
           <h2 className="text-2xl font-semibold mb-4">BadContract</h2>
           <button className="btn btn-primary" onClick={handleMagicBadContract}>
-            Call Magic Function
+            Call Contract
           </button>
         </div>
       </div>

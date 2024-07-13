@@ -90,7 +90,7 @@ const ViewNote: NextPage = () => {
         nullifierHash: BigInt(proof!.nullifier_hash),
         proof: decodeAbiParameters(parseAbiParameters("uint256[8]"), proof!.proof as `0x${string}`)[0],
       };
-    }writeNotesContract
+    }
 
 
 
@@ -125,8 +125,8 @@ const ViewNote: NextPage = () => {
             <p>We use Worldcoin World ID to verify your identity. Please sign in to continue.</p>
             <IDKitWidget
               app_id={process.env.NEXT_PUBLIC_APP_ID as `app_${string}`}
-              action={process.env.NEXT_PUBLIC_ACTION_CREATE as string}
-              signal={address}
+              action={process.env.NEXT_PUBLIC_WC_VOTE_ID as string}
+              signal={connectedAccount}
               onSuccess={setProof}
             >
               {({ open }) => (
@@ -186,21 +186,21 @@ const ViewNote: NextPage = () => {
                     <button
                       onClick={() => handleVote(index, 0)}
                       className="btn flex-1 rounded-none first:rounded-l-lg last:rounded-r-lg"
-                      disabled={isPending}
+                      disabled={ (!proof && targetNetwork?.id === 84532) || isPending}
                     >
                       Helpful
                     </button>
                     <button
                       onClick={() => handleVote(index, 2)}
                       className="btn flex-1 rounded-none first:rounded-l-lg last:rounded-r-lg"
-                      disabled={isPending}
+                      disabled={ (!proof && targetNetwork?.id === 84532) || isPending}
                     >
                       Somewhat helpful
                     </button>
                     <button
                       onClick={() => handleVote(index, 1)}
                       className="btn flex-1 rounded-none first:rounded-l-lg last:rounded-r-lg"
-                      disabled={isPending}
+                      disabled={ (!proof && targetNetwork?.id === 84532) || isPending}
                     >
                       Not helpful
                     </button>

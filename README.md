@@ -3,6 +3,9 @@
 <h4 align="center">
   <a href="https://github.com/chain-notes-brussels/chain-notes-snap">Repo</a> |
   <a href="https://chain-notes.vercel.app/">Website</a>
+
+
+![logo](assets/logo.png)
 </h4>
 
 🫰 Always falling for rugs and scams? Afraid to claim airdrops because you're unsure if the contract is safe? Chain Notes provides context about a contract, before a transaction. The context can show if a contract is malicious or safe, or provide other insightful information. What is shown is based on notes that are linked to an address, and voted on by the community. The voting logic is a slightly simplified version on Twitter/X's voting algorithm of Community Notes and we used [Vitalik's blog post](https://vitalik.eth.limo/general/2023/08/16/communitynotes.html) for guidance. We have set the contract up in such a way so that we can easily implement the full algorithm with some offchain computing when we continue after the hackathon.
@@ -21,13 +24,13 @@
 
 ## Screenshots
 
-| Landing page                      | Metamask Snap              |
+| Create not                      | Worldcoin popup              |
 | --------------------------------- | --------------------------------- |
-| ![dashboard 1](screenshots/1.png) | ![dashboard 2](screenshots/2.png) |
+| ![dashboard 1](assets/create.png) | ![dashboard 2](assets/worldcoin.png) |
 
-|  Create Note                          | View note                      |
+|  View notes                          | Metamask Snap Popup                      |
 | --------------------------------- | --------------------------------- |
-| ![dashboard 3](screenshots/3.png) | ![dashboard 4](screenshots/4.png) |
+| ![dashboard 3](assets/view.png) | ![dashboard 4](assets/4.png) |
 
 ## Smart Contracts overview ⌨️
 
