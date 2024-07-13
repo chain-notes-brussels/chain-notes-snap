@@ -84,6 +84,10 @@ We deployed our contracts on Zircuit and manually added the config for the front
 
 ### Deployed contracts
 - [Notes.sol on Sepolia](https://sepolia.etherscan.io/address/0x62a4d5b0f16d8eb9065310afbb7f2622d981f124)
+- [Notes.sol on Base Sepolia](https://sepolia.basescan.org/address/0x83277e9fe7cc93ad2d5986b87659a6fa80a48ac0)
+- [Notes.sol on Arbitrum Sepolia](https://sepolia.arbiscan.io/address/0x83277e9fe7cc93ad2d5986b87659a6fa80a48ac0)
+- [Notes.sol on Scroll Sepolia](https://sepolia.scrollscan.com/address/0x701988c9b733b6c9c6778cc783f637f46a374d02)
+- [Notes.sol on Linea Sepolia](https://api-sepolia.lineascan.build/address/0x4a71867b2739f0976ccc950b643582ca94e6ca28)
 
 ### References
 - [Vitalik blog - What do I think about Community Notes?](https://vitalik.eth.limo/general/2023/08/16/communitynotes.html)
