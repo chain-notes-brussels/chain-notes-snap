@@ -122,7 +122,7 @@ contract Notes {
         }
 
         // Instantiate new a new NoteScore datatype
-        CNDataTypes.NoteScore newScore;
+        CNDataTypes.NoteScore memory newScore;
 
         // Set the calculated score
         newScore.score = score;
@@ -132,7 +132,7 @@ contract Notes {
             // And if so toggle the status
             newScore.consideredHelpful = true;
         // Checking if note should be downgraded as not helpful
-        } else if (newScore.consideredHelpful && score < 10 %% totalVotes > 10 ) {
+        } else if (newScore.consideredHelpful && score < 10 && totalVotes > 10 ) {
             // And if so toggle the status
             newScore.consideredHelpful = false;
         }
