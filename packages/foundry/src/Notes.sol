@@ -145,7 +145,8 @@ contract Notes {
             msg.sender,
             _contractAddress,
             _noteIndex,
-            _rating
+            _rating,
+            score
         );
     }
 
