@@ -89,6 +89,11 @@ We deployed our contracts on Zircuit and manually added the config for the front
 - [Notes.sol on Arbitrum Sepolia](https://sepolia.arbiscan.io/address/0x83277E9FE7Cc93Ad2D5986b87659A6fa80A48Ac0)
 - [Notes.sol on Scroll Sepolia](https://sepolia.scrollscan.com/address/0x1e2818770eEaE7A4B958109d4915Ea3e8DA572c6)
 - [Notes.sol on Linea Sepolia](https://api-sepolia.lineascan.build/address/0x4CC142ed6B170CC9e7cbecca486B79cd88727821)
+- [Notes.sol on ApeChain](https://jenkins.explorer.caldera.xyz/address/0x83277E9FE7Cc93Ad2D5986b87659A6fa80A48Ac0)
+- [Notes.sol on Zircuit](https://explorer.zircuit.com/address/0xD75595cCA0721f30a6449DD2b641Bc2E4FE44558)
+- [Notes.sol on Zero]()
+- [Notes.sol on Morph](https://explorer-holesky.morphl2.io/address/0x83277E9FE7Cc93Ad2D5986b87659A6fa80A48Ac0)
+- [Notes.sol on Neon]()
 
 ### References
 - [Vitalik blog - What do I think about Community Notes?](https://vitalik.eth.limo/general/2023/08/16/communitynotes.html)

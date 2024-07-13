@@ -5,22 +5,40 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
-  59141: {
+  1798: {
     Notes: {
-      address: "0xea5b0795b29e1f9cbeee5e5280a641d4e1f46063",
+      address: "0xc15bc025d57bec9fa39e18701b4f0b3b5a067b6c",
       abi: [
         {
-          type: "function",
-          name: "DENOMINATOR",
-          inputs: [],
-          outputs: [
+          type: "constructor",
+          inputs: [
             {
-              name: "",
-              type: "uint16",
-              internalType: "uint16",
+              name: "_useWorldId",
+              type: "bool",
+              internalType: "bool",
+            },
+            {
+              name: "_worldId",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_appId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_noteId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_voteId",
+              type: "string",
+              internalType: "string",
             },
           ],
-          stateMutability: "view",
+          stateMutability: "nonpayable",
         },
         {
           type: "function",
@@ -134,6 +152,33 @@ const deployedContracts = {
               name: "_sentiment",
               type: "uint8",
               internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
             },
           ],
           outputs: [
@@ -340,6 +385,59 @@ const deployedContracts = {
         },
         {
           type: "function",
+          name: "userVotedOnNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "voted",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userWrittenNoteFor",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "writtenNote",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
           name: "vote",
           inputs: [
             {
@@ -356,6 +454,33 @@ const deployedContracts = {
               name: "_contractAddress",
               type: "address",
               internalType: "address",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
             },
           ],
           outputs: [],
@@ -509,6 +634,5177 @@ const deployedContracts = {
             },
           ],
           anonymous: false,
+        },
+        {
+          type: "error",
+          name: "YOU_HAVE_ALREADY",
+          inputs: [
+            {
+              name: "action",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Actions",
+            },
+          ],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  2810: {
+    Notes: {
+      address: "0x83277e9fe7cc93ad2d5986b87659a6fa80a48ac0",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_useWorldId",
+              type: "bool",
+              internalType: "bool",
+            },
+            {
+              name: "_worldId",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_appId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_noteId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_voteId",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "HELPFULNESS_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "INITIAL_ELIGIBILITY_RATING_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "amountOfRating",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "notesOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "noteWriter",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "score",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "uri",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "publishNote",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_uri",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "_note",
+              type: "tuple",
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "ratingWeightOf",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint40",
+              internalType: "uint40",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "retrieveContractNotes",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_notes",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.Note[]",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "scoreInfoOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "score",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "consideredHelpful",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "sentimentOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "tip",
+          inputs: [
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_success",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "userRatingOfNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userVotedOnNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "voted",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userWrittenNoteFor",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "writtenNote",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "vote",
+          inputs: [
+            {
+              name: "_rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "NotePublished",
+          inputs: [
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "amountOfNotesForContract",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Tipped",
+          inputs: [
+            {
+              name: "tipper",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "tipAmount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Voted",
+          inputs: [
+            {
+              name: "voter",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "noteIndex",
+              type: "uint16",
+              indexed: false,
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              indexed: false,
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "score",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "YOU_HAVE_ALREADY",
+          inputs: [
+            {
+              name: "action",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Actions",
+            },
+          ],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  48899: {
+    Notes: {
+      address: "0xd75595cca0721f30a6449dd2b641bc2e4fe44558",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_useWorldId",
+              type: "bool",
+              internalType: "bool",
+            },
+            {
+              name: "_worldId",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_appId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_noteId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_voteId",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "HELPFULNESS_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "INITIAL_ELIGIBILITY_RATING_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "amountOfRating",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "notesOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "noteWriter",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "score",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "uri",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "publishNote",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_uri",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "_note",
+              type: "tuple",
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "ratingWeightOf",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint40",
+              internalType: "uint40",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "retrieveContractNotes",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_notes",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.Note[]",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "scoreInfoOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "score",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "consideredHelpful",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "sentimentOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "tip",
+          inputs: [
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_success",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "userRatingOfNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userVotedOnNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "voted",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userWrittenNoteFor",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "writtenNote",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "vote",
+          inputs: [
+            {
+              name: "_rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "NotePublished",
+          inputs: [
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "amountOfNotesForContract",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Tipped",
+          inputs: [
+            {
+              name: "tipper",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "tipAmount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Voted",
+          inputs: [
+            {
+              name: "voter",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "noteIndex",
+              type: "uint16",
+              indexed: false,
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              indexed: false,
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "score",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "YOU_HAVE_ALREADY",
+          inputs: [
+            {
+              name: "action",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Actions",
+            },
+          ],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  59141: {
+    Notes: {
+      address: "0x640a8be4be3b18b35a7d7bbbab2444ad4d5fc87a",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_useWorldId",
+              type: "bool",
+              internalType: "bool",
+            },
+            {
+              name: "_worldId",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_appId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_noteId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_voteId",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "HELPFULNESS_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "INITIAL_ELIGIBILITY_RATING_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "amountOfRating",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "notesOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "noteWriter",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "score",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "uri",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "publishNote",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_uri",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "_note",
+              type: "tuple",
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "ratingWeightOf",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint40",
+              internalType: "uint40",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "retrieveContractNotes",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_notes",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.Note[]",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "scoreInfoOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "score",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "consideredHelpful",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "sentimentOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "tip",
+          inputs: [
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_success",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "userRatingOfNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userVotedOnNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "voted",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userWrittenNoteFor",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "writtenNote",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "vote",
+          inputs: [
+            {
+              name: "_rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "NotePublished",
+          inputs: [
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "amountOfNotesForContract",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Tipped",
+          inputs: [
+            {
+              name: "tipper",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "tipAmount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Voted",
+          inputs: [
+            {
+              name: "voter",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "noteIndex",
+              type: "uint16",
+              indexed: false,
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              indexed: false,
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "score",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "YOU_HAVE_ALREADY",
+          inputs: [
+            {
+              name: "action",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Actions",
+            },
+          ],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  84532: {
+    Notes: {
+      address: "0xf97379b8768c2bb3ca23413766b1db6840b551a0",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_useWorldId",
+              type: "bool",
+              internalType: "bool",
+            },
+            {
+              name: "_worldId",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_appId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_noteId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_voteId",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "HELPFULNESS_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "INITIAL_ELIGIBILITY_RATING_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "amountOfRating",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "notesOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "noteWriter",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "score",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "uri",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "publishNote",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_uri",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "_note",
+              type: "tuple",
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "ratingWeightOf",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint40",
+              internalType: "uint40",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "retrieveContractNotes",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_notes",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.Note[]",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "scoreInfoOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "score",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "consideredHelpful",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "sentimentOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "tip",
+          inputs: [
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_success",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "userRatingOfNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userVotedOnNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "voted",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userWrittenNoteFor",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "writtenNote",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "vote",
+          inputs: [
+            {
+              name: "_rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "NotePublished",
+          inputs: [
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "amountOfNotesForContract",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Tipped",
+          inputs: [
+            {
+              name: "tipper",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "tipAmount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Voted",
+          inputs: [
+            {
+              name: "voter",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "noteIndex",
+              type: "uint16",
+              indexed: false,
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              indexed: false,
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "score",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "YOU_HAVE_ALREADY",
+          inputs: [
+            {
+              name: "action",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Actions",
+            },
+          ],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  421614: {
+    Notes: {
+      address: "0x83277e9fe7cc93ad2d5986b87659a6fa80a48ac0",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_useWorldId",
+              type: "bool",
+              internalType: "bool",
+            },
+            {
+              name: "_worldId",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_appId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_noteId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_voteId",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "HELPFULNESS_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "INITIAL_ELIGIBILITY_RATING_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "amountOfRating",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "notesOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "noteWriter",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "score",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "uri",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "publishNote",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_uri",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "_note",
+              type: "tuple",
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "ratingWeightOf",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint40",
+              internalType: "uint40",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "retrieveContractNotes",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_notes",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.Note[]",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "scoreInfoOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "score",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "consideredHelpful",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "sentimentOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "tip",
+          inputs: [
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_success",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "userRatingOfNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userVotedOnNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "voted",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userWrittenNoteFor",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "writtenNote",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "vote",
+          inputs: [
+            {
+              name: "_rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "NotePublished",
+          inputs: [
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "amountOfNotesForContract",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Tipped",
+          inputs: [
+            {
+              name: "tipper",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "tipAmount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Voted",
+          inputs: [
+            {
+              name: "voter",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "noteIndex",
+              type: "uint16",
+              indexed: false,
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              indexed: false,
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "score",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "YOU_HAVE_ALREADY",
+          inputs: [
+            {
+              name: "action",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Actions",
+            },
+          ],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  534351: {
+    Notes: {
+      address: "0x1e2818770eeae7a4b958109d4915ea3e8da572c6",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_useWorldId",
+              type: "bool",
+              internalType: "bool",
+            },
+            {
+              name: "_worldId",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_appId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_noteId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_voteId",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "HELPFULNESS_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "INITIAL_ELIGIBILITY_RATING_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "amountOfRating",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "notesOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "noteWriter",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "score",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "uri",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "publishNote",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_uri",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "_note",
+              type: "tuple",
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "ratingWeightOf",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint40",
+              internalType: "uint40",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "retrieveContractNotes",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_notes",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.Note[]",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "scoreInfoOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "score",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "consideredHelpful",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "sentimentOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "tip",
+          inputs: [
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_success",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "userRatingOfNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userVotedOnNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "voted",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userWrittenNoteFor",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "writtenNote",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "vote",
+          inputs: [
+            {
+              name: "_rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "NotePublished",
+          inputs: [
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "amountOfNotesForContract",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Tipped",
+          inputs: [
+            {
+              name: "tipper",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "tipAmount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Voted",
+          inputs: [
+            {
+              name: "voter",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "noteIndex",
+              type: "uint16",
+              indexed: false,
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              indexed: false,
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "score",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "YOU_HAVE_ALREADY",
+          inputs: [
+            {
+              name: "action",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Actions",
+            },
+          ],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  4457845: {
+    Notes: {
+      address: "0x83277e9fe7cc93ad2d5986b87659a6fa80a48ac0",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_useWorldId",
+              type: "bool",
+              internalType: "bool",
+            },
+            {
+              name: "_worldId",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_appId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_noteId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_voteId",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "HELPFULNESS_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "INITIAL_ELIGIBILITY_RATING_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "amountOfRating",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "notesOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "noteWriter",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "score",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "uri",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "publishNote",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_uri",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "_note",
+              type: "tuple",
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "ratingWeightOf",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint40",
+              internalType: "uint40",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "retrieveContractNotes",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_notes",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.Note[]",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "scoreInfoOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "score",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "consideredHelpful",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "sentimentOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "tip",
+          inputs: [
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_success",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "userRatingOfNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userVotedOnNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "voted",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userWrittenNoteFor",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "writtenNote",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "vote",
+          inputs: [
+            {
+              name: "_rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "NotePublished",
+          inputs: [
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "amountOfNotesForContract",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Tipped",
+          inputs: [
+            {
+              name: "tipper",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "tipAmount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Voted",
+          inputs: [
+            {
+              name: "voter",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "noteIndex",
+              type: "uint16",
+              indexed: false,
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              indexed: false,
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "score",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "YOU_HAVE_ALREADY",
+          inputs: [
+            {
+              name: "action",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Actions",
+            },
+          ],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  11155111: {
+    Notes: {
+      address: "0xea5b0795b29e1f9cbeee5e5280a641d4e1f46063",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_useWorldId",
+              type: "bool",
+              internalType: "bool",
+            },
+            {
+              name: "_worldId",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_appId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_noteId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_voteId",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "HELPFULNESS_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "INITIAL_ELIGIBILITY_RATING_THRESHOLD",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "amountOfRating",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "notesOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "noteWriter",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "score",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "uri",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "publishNote",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_uri",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "_note",
+              type: "tuple",
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "ratingWeightOf",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint40",
+              internalType: "uint40",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "retrieveContractNotes",
+          inputs: [
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_notes",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.Note[]",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "scoreInfoOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "score",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "consideredHelpful",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "sentimentOf",
+          inputs: [
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "sentiment",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Sentiment",
+            },
+          ],
+          outputs: [
+            {
+              name: "amount",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "tip",
+          inputs: [
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "_success",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "userRatingOfNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userVotedOnNote",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "index",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          outputs: [
+            {
+              name: "voted",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userWrittenNoteFor",
+          inputs: [
+            {
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "writtenNote",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "vote",
+          inputs: [
+            {
+              name: "_rating",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "_noteIndex",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "_contractAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_proof",
+              type: "tuple",
+              internalType: "struct CNDataTypes.WorldIdProof",
+              components: [
+                {
+                  name: "root",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "signal",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "nullifierHash",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "proof",
+                  type: "uint256[8]",
+                  internalType: "uint256[8]",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "NotePublished",
+          inputs: [
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "amountOfNotesForContract",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Tipped",
+          inputs: [
+            {
+              name: "tipper",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "author",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "tipAmount",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "note",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct CNDataTypes.Note",
+              components: [
+                {
+                  name: "noteWriter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "sentiment",
+                  type: "uint8",
+                  internalType: "enum CNDataTypes.Sentiment",
+                },
+                {
+                  name: "score",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "uri",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Voted",
+          inputs: [
+            {
+              name: "voter",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "contractAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "noteIndex",
+              type: "uint16",
+              indexed: false,
+              internalType: "uint16",
+            },
+            {
+              name: "rating",
+              type: "uint8",
+              indexed: false,
+              internalType: "enum CNDataTypes.Rating",
+            },
+            {
+              name: "score",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "YOU_HAVE_ALREADY",
+          inputs: [
+            {
+              name: "action",
+              type: "uint8",
+              internalType: "enum CNDataTypes.Actions",
+            },
+          ],
         },
       ],
       inheritedFunctions: {},

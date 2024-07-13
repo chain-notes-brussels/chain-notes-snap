@@ -27,6 +27,7 @@ function getArtifactOfContract(contractName) {
     "..",
     `out/${contractName}.sol`
   );
+  console.log("current_path_to_artifacts", current_path_to_artifacts);
   const artifactJson = JSON.parse(
     fs.readFileSync(`${current_path_to_artifacts}/${contractName}.json`)
   );
@@ -91,6 +92,8 @@ function main() {
 
   const allGeneratedContracts = {};
 
+  console.log("chains" ,chains);
+
   chains.forEach((chain) => {
     allGeneratedContracts[chain] = {};
     const broadCastObject = JSON.parse(
@@ -99,10 +102,11 @@ function main() {
     const transactionsCreate = broadCastObject.transactions.filter(
       (transaction) => transaction.transactionType == "CREATE"
     );
+
     transactionsCreate.forEach((transaction) => {
       const artifact = getArtifactOfContract(transaction.contractName);
+      
       allGeneratedContracts[chain][
-        deployments[chain][transaction.contractAddress] ||
           transaction.contractName
       ] = {
         address: transaction.contractAddress,
