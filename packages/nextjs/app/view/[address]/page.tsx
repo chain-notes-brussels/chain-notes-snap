@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import type { NextPage } from "next";
-import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
-import { Address } from "~~/components/scaffold-eth";
 import { isAddress } from "viem";
+import { Address } from "~~/components/scaffold-eth";
+import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const ViewNote: NextPage = () => {
   const { address } = useParams();
@@ -72,9 +72,14 @@ const ViewNote: NextPage = () => {
           {notes
             .sort((a, b) => b.score - a.score) // Sort notes, highest score first
             .map((note, index) => (
-              <div key={index} className="bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-8">
+              <div
+                key={index}
+                className="bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-8"
+              >
                 <div className="flex flex-col mb-4">
-                  <p className="font-medium my-0 break-words mb-2">{note.sentiment ? "✅ Positive note" : "❌ Negative note"}</p>
+                  <p className="font-medium my-0 break-words mb-2">
+                    {note.sentiment ? "✅ Positive note" : "❌ Negative note"}
+                  </p>
                   <div className="bg-secondary rounded-3xl text-sm px-4 py-1.5 break-words overflow-auto">
                     <pre className="whitespace-pre-wrap break-words">{note.uri}</pre>
                   </div>

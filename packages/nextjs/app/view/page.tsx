@@ -27,10 +27,7 @@ const ViewPage = () => {
           </div>
           <div className="flex flex-col items-center mt-4">
             <Link href={validAddress ? `/view/${inputAddress}` : "#"} passHref>
-              <button
-                className={`btn btn-primary ${!validAddress && 'btn-disabled'}`}
-                disabled={!validAddress}
-              >
+              <button className={`btn btn-primary ${!validAddress && "btn-disabled"}`} disabled={!validAddress}>
                 View Note
               </button>
             </Link>
