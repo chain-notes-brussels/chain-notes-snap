@@ -126,7 +126,8 @@ contract Notes {
      *
      * @param _contractAddress address off contract we are about to add a note for
      * @param _uri IPFS uri for note
-     * @param _sentiment if the comment is POSETIVE or NEGATIVE
+     * @param _sentiment if the comment is POSITIVE or NEGATIVE
+     * @param _proof worldID proof (if on supported network)
      *
      * @return _note the finalized note datastructure
      *
@@ -145,7 +146,7 @@ contract Notes {
             // verify proof
             worldId.verifyProof(
                 _proof.root,
-                //groupId,
+                groupId,
                 abi.encodePacked(_proof.signal).hashToField(),
                 _proof.nullifierHash,
                 externalNullifierNote,
@@ -210,7 +211,7 @@ contract Notes {
             // verify proof
             worldId.verifyProof(
                 _proof.root,
-                //groupId,
+                groupId,
                 abi.encodePacked(_proof.signal).hashToField(),
                 _proof.nullifierHash,
                 externalNullifierVote,
