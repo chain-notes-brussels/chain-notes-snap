@@ -3,7 +3,9 @@ pragma solidity 0.8.26;
 
 import "forge-std/Script.sol";
 import {Notes} from "src/Notes.sol";
-import {MockContract} from "test/mock/MockContract.sol";
+import {MockContractA} from "test/mock/MockContractA.sol";
+import {MockContractB} from "test/mock/MockContractB.sol";
+import {MockContractC} from "test/mock/MockContractC.sol";
 import {CNDataTypes} from "src/libraries/CNDataTypes.sol";
 
 contract CounterScript is Script {
@@ -15,9 +17,9 @@ contract CounterScript is Script {
     string public C_PATH = string.concat(PATH_PREFIX, "/ContractC/address");
 
     Notes notes;
-    MockContract contractA;
-    MockContract contractB;
-    MockContract contractC;
+    MockContractA contractA;
+    MockContractB contractB;
+    MockContractC contractC;
 
     uint256 deployerKey = vm.envUint("DEPLOYER_KEY");
 
@@ -47,28 +49,28 @@ contract CounterScript is Script {
                 voteId
             );
 
-            contractA = new MockContract();
-            contractB = new MockContract();
-            contractC = new MockContract();
+            contractA = new MockContractA();
+            contractB = new MockContractB();
+            contractC = new MockContractC();
             CNDataTypes.WorldIdProof memory emptyId;
 
             notes.publishNote(
                 address(contractA),
-                "",
+                "bafkreibkt24dhy7l5xvoagixtcdxr4l4v7fjtvuxqemtcoksf5troviba4",
                 CNDataTypes.Sentiment.POSITIVE,
                 emptyId
             );
 
             notes.publishNote(
                 address(contractB),
-                "",
+                "bafkreigt7dc5vnggawea6e6cxwd45sjwdcvaafoqcm673fawxqvjsf5lca",
                 CNDataTypes.Sentiment.POSITIVE,
                 emptyId
             );
 
             notes.publishNote(
                 address(contractC),
-                "",
+                "bafkreicg55jxkt7xc4p7zmg5s5lfpkw7et4vqxdhoqsgrstzeuozc6rkbm",
                 CNDataTypes.Sentiment.NEGATIVE,
                 emptyId
             );
