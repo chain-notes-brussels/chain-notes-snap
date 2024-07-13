@@ -58,6 +58,9 @@ contract Notes {
     /// @dev Array of notes for a specific contract address
     mapping(address contractAddress => CNDataTypes.Note[] note) public notesOf;
 
+    /// @dev Array of scores for a specific contract address
+    mapping(address contractAddress => CNDataTypes.NoteScore[] scores) public scoresOf;
+
     /// @dev The amount of posetive / negative sentiment for a specific contract address
     mapping(address contractAddress => mapping(CNDataTypes.Sentiment sentiment => uint16 amount)) public sentimentOf;
 
@@ -65,7 +68,7 @@ contract Notes {
     mapping(address contractAddress => mapping(uint16 index => mapping(CNDataTypes.Rating rating => uint32 amount))) public amountOfRating;
 
     /// @dev store score info
-    mapping(address contractAddress => mapping(uint16 index => CNDataTypes.NoteScore)) public scoreInfoOf;
+    mapping(address contractAddress => mapping(uint16 index => CNDataTypes.NoteScore scoreInfo)) public scoreInfoOf;
 
     /// @dev The rating weight of a user
     mapping(address user => mapping(CNDataTypes.Rating => uint40 amount)) public ratingWeightOf;
@@ -145,7 +148,7 @@ contract Notes {
             // verify proof
             worldId.verifyProof(
                 _proof.root,
-                groupId,
+                //groupId,
                 abi.encodePacked(_proof.signal).hashToField(),
                 _proof.nullifierHash,
                 externalNullifierNote,
@@ -160,8 +163,17 @@ contract Notes {
             sentiment: _sentiment
         });
 
+        // Notescore variable
+        CNDataTypes.NoteScore score = CNDataTypes.NoteScore({
+            score: 0,
+            consideredHelpful: false
+        });
+
         // Push note into the notesOf array for specific contract
         notesOf[_contractAddress].push(_note);
+
+        // Push score info inte scoreOf array for specific contract
+        scoresOf[_contractAddress].push(score);
 
         // Increment the specified sentiment for the contract
         sentimentOf[_contractAddress][_sentiment]++;
@@ -201,7 +213,7 @@ contract Notes {
             // verify proof
             worldId.verifyProof(
                 _proof.root,
-                groupId,
+                //groupId,
                 abi.encodePacked(_proof.signal).hashToField(),
                 _proof.nullifierHash,
                 externalNullifierVote,
