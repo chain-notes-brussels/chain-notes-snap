@@ -3,9 +3,21 @@ pragma solidity 0.8.26;
 
 import "forge-std/Script.sol";
 import {Notes} from "src/Notes.sol";
+import {MockContract} from "test/mock/MockContract.sol";
+import {CNDataTypes} from "src/libraries/CNDataTypes.sol";
 
 contract CounterScript is Script {
+
+    string public PATH_PREFIX = string.concat("deployAddresses/", vm.toString(block.chainid));
+    string public NOTES_PATH = string.concat(PATH_PREFIX, "/Notes/address");
+    string public A_PATH = string.concat(PATH_PREFIX, "/ContractA/address");
+    string public B_PATH = string.concat(PATH_PREFIX, "/ContractB/address");
+    string public C_PATH = string.concat(PATH_PREFIX, "/ContractC/address");
+
     Notes notes;
+    MockContract contractA;
+    MockContract contractB;
+    MockContract contractC;
 
     uint256 deployerKey = vm.envUint("DEPLOYER_KEY");
 
@@ -23,6 +35,9 @@ contract CounterScript is Script {
                 noteId,
                 voteId
             );
+
+            vm.writeFile(NOTES_PATH, vm.toString(address(notes)));
+
         } else {
             notes = new Notes(
                 false,
@@ -31,6 +46,36 @@ contract CounterScript is Script {
                 noteId,
                 voteId
             );
+
+            contractA = new MockContract();
+            contractB = new MockContract();
+            contractC = new MockContract();
+            CNDataTypes.WorldIdProof memory emptyId;
+
+            notes.publishNote(
+                address(contractA),
+                "",
+                CNDataTypes.Sentiment.POSITIVE,
+                emptyId
+            );
+
+            notes.publishNote(
+                address(contractB),
+                "",
+                CNDataTypes.Sentiment.POSITIVE,
+                emptyId
+            );
+
+            notes.publishNote(
+                address(contractC),
+                "",
+                CNDataTypes.Sentiment.NEGATIVE,
+                emptyId
+            );
+            vm.writeFile(NOTES_PATH, vm.toString(address(notes)));
+            vm.writeFile(A_PATH, vm.toString(address(contractA)));
+            vm.writeFile(B_PATH, vm.toString(address(contractB)));
+            vm.writeFile(C_PATH, vm.toString(address(contractC)));
         }
         vm.stopBroadcast();
     }

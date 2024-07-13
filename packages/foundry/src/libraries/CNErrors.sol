@@ -11,6 +11,9 @@ import {CNDataTypes} from "src/libraries/CNDataTypes.sol";
  *
  */
 library CNErrors {
-    /// @dev error thrown when a user has already done one specific action
+    /// @dev Error thrown when a user has already done one specific action
     error YOU_HAVE_ALREADY(CNDataTypes.Actions action);
+
+    /// @dev Error thrown when someone tries to vot on a non contract address
+    error NOT_A_CONTRACT();
 }
