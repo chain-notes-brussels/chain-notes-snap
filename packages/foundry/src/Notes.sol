@@ -320,6 +320,7 @@ contract Notes {
      * @param _contractAddress address of contract we want to check
      *
      * @return _notes array of notes associated with contract
+     * @return _scores array of all scores associated with contract
      *
      */
     function retrieveContractNotes(address _contractAddress) external view returns (
