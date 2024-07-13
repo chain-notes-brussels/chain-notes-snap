@@ -67,9 +67,6 @@ contract Notes {
     /// @dev The amount of different ratoings for a specific note
     mapping(address contractAddress => mapping(uint16 index => mapping(CNDataTypes.Rating rating => uint32 amount))) public amountOfRating;
 
-    /// @dev store score info
-    mapping(address contractAddress => mapping(uint16 index => CNDataTypes.NoteScore scoreInfo)) public scoreInfoOf;
-
     /// @dev The rating weight of a user
     mapping(address user => mapping(CNDataTypes.Rating => uint40 amount)) public ratingWeightOf;
 
@@ -88,9 +85,9 @@ contract Notes {
      *
      * @param _useWorldId a boolan if we are using worldcoin id or not
      * @param _worldId address of worldå
-     * @param _appId
-     * @param _noteId
-     * @param _voteId
+     * @param _appId worldcoin app id as string
+     * @param _noteId worldcoin action id for note
+     * @param _voteId worldcoin action id for vote
      *
      */
     constructor(
@@ -164,7 +161,7 @@ contract Notes {
         });
 
         // Notescore variable
-        CNDataTypes.NoteScore score = CNDataTypes.NoteScore({
+        CNDataTypes.NoteScore memory score = CNDataTypes.NoteScore({
             score: 0,
             consideredHelpful: false
         });
@@ -268,7 +265,7 @@ contract Notes {
         }
 
         // Set the score info to the note
-        scoreInfoOf[_contractAddress][_noteIndex] = newScore;
+        scoresOf[_contractAddress][_noteIndex] = newScore;
 
         // Toggle the voted on note stattus for user
         userVotedOnNote[msg.sender][_contractAddress][_noteIndex] = true;
@@ -325,8 +322,14 @@ contract Notes {
      * @return _notes array of notes associated with contract
      *
      */
-    function retrieveContractNotes(address _contractAddress) external view returns (CNDataTypes.Note[] memory _notes) {
+    function retrieveContractNotes(address _contractAddress) external view returns (
+        CNDataTypes.Note[] memory _notes,
+        CNDataTypes.NoteScore[] memory _scores
+    ) {
         // retrieve notes
         _notes = notesOf[_contractAddress];
+
+        // Retrieve score
+        _scores = scoresOf[_contractAddress];
     }
 }

@@ -4,7 +4,7 @@ pragma solidity 0.8.26;
 interface IWorldID {
     /// @notice Reverts if the zero-knowledge proof is invalid.
     /// @param root The of the Merkle tree
-    /// @param groupId The id of the Semaphore group
+    // @param groupId The id of the Semaphore group
     /// @param signalHash A keccak256 hash of the Semaphore signal
     /// @param nullifierHash The nullifier hash
     /// @param externalNullifierHash A keccak256 hash of the external nullifier
