@@ -112,8 +112,8 @@ contract Notes {
         // If totalvotes is more than 0...
         if (totalVotes > 0) {
             // ... calculate the score ...
-            score = ((amountOfRating[_contractAddress][_noteIndex][CNDataTypes.Rating.HELPFUL] * 100) +
-            (amountOfRating[_contractAddress][_noteIndex][CNDataTypes.Rating.SOMEWHAT_HELPFUL] * 50))
+            score = ((amountOfRating[_contractAddress][_noteIndex][CNDataTypes.Rating.HELPFUL] * 80) +
+            (amountOfRating[_contractAddress][_noteIndex][CNDataTypes.Rating.SOMEWHAT_HELPFUL] * 40))
             / totalVotes;
         // ... else...
         } else {

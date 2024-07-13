@@ -5,8 +5,16 @@ libs = ["lib"]
 fs_permissions = [{ access = "read-write", path = "./"}]
 
 [rpc_endpoints]
-default_network = "${SEPOLIA_RPC}"
+#default_network = "${SEPOLIA_RPC}"
 sepolia = "${SEPOLIA_RPC}"
+base-sepolia = "${BASE_SEPOLIA_RPC}"
+arbitrum-sepolia = "${ARBITRUM_SEPOLIA_RPC}"
+morph-holesky = "${MORPH_HOLESKY_RPC}"
+scroll-sepolia = "${SCROLL_SEPOLIA_RPC}"
+linea-sepolia = "${LINNEA_SEPOLIA_RPC}"
+zircuit = "${ZIRCUIT_TESTNET_RPC}"
+apechain = "${APECHAIN_JENKINS_RPC}"
+zero-sepolia = "${ZERO_SEPOLIA_RPC}"
 
 [etherscan]
 sepolia = { key = "${SEPOLIA_API_KEY}", url = "https://api-sepolia.etherscan.io/api" }
