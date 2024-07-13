@@ -122,11 +122,6 @@ const deployedContracts = {
               internalType: "enum CNDataTypes.Sentiment",
             },
             {
-              name: "score",
-              type: "uint16",
-              internalType: "uint16",
-            },
-            {
               name: "uri",
               type: "string",
               internalType: "string",
@@ -198,11 +193,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -261,11 +251,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -353,6 +338,19 @@ const deployedContracts = {
             },
           ],
           stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "useWordlId",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
         },
         {
           type: "function",
@@ -525,11 +523,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -582,11 +575,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -767,11 +755,6 @@ const deployedContracts = {
               internalType: "enum CNDataTypes.Sentiment",
             },
             {
-              name: "score",
-              type: "uint16",
-              internalType: "uint16",
-            },
-            {
               name: "uri",
               type: "string",
               internalType: "string",
@@ -843,11 +826,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -906,11 +884,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -998,6 +971,19 @@ const deployedContracts = {
             },
           ],
           stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "useWordlId",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
         },
         {
           type: "function",
@@ -1170,11 +1156,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -1227,11 +1208,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -1412,11 +1388,6 @@ const deployedContracts = {
               internalType: "enum CNDataTypes.Sentiment",
             },
             {
-              name: "score",
-              type: "uint16",
-              internalType: "uint16",
-            },
-            {
               name: "uri",
               type: "string",
               internalType: "string",
@@ -1488,11 +1459,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -1551,11 +1517,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -1643,6 +1604,19 @@ const deployedContracts = {
             },
           ],
           stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "useWordlId",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
         },
         {
           type: "function",
@@ -1815,11 +1789,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -1872,11 +1841,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -2057,11 +2021,6 @@ const deployedContracts = {
               internalType: "enum CNDataTypes.Sentiment",
             },
             {
-              name: "score",
-              type: "uint16",
-              internalType: "uint16",
-            },
-            {
               name: "uri",
               type: "string",
               internalType: "string",
@@ -2133,11 +2092,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -2196,11 +2150,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -2288,6 +2237,19 @@ const deployedContracts = {
             },
           ],
           stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "useWordlId",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
         },
         {
           type: "function",
@@ -2460,11 +2422,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -2517,11 +2474,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -2587,7 +2539,7 @@ const deployedContracts = {
   },
   84532: {
     Notes: {
-      address: "0xf97379b8768c2bb3ca23413766b1db6840b551a0",
+      address: "0x5c0bda6a6d287dfdc058b86bdafc7509db74e111",
       abi: [
         {
           type: "constructor",
@@ -2702,11 +2654,6 @@ const deployedContracts = {
               internalType: "enum CNDataTypes.Sentiment",
             },
             {
-              name: "score",
-              type: "uint16",
-              internalType: "uint16",
-            },
-            {
               name: "uri",
               type: "string",
               internalType: "string",
@@ -2778,11 +2725,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -2841,11 +2783,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -2933,6 +2870,19 @@ const deployedContracts = {
             },
           ],
           stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "useWordlId",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
         },
         {
           type: "function",
@@ -3105,11 +3055,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -3162,11 +3107,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -3347,11 +3287,6 @@ const deployedContracts = {
               internalType: "enum CNDataTypes.Sentiment",
             },
             {
-              name: "score",
-              type: "uint16",
-              internalType: "uint16",
-            },
-            {
               name: "uri",
               type: "string",
               internalType: "string",
@@ -3423,11 +3358,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -3486,11 +3416,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -3578,6 +3503,19 @@ const deployedContracts = {
             },
           ],
           stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "useWordlId",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
         },
         {
           type: "function",
@@ -3750,11 +3688,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -3807,11 +3740,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -3877,7 +3805,7 @@ const deployedContracts = {
   },
   534351: {
     Notes: {
-      address: "0x1e2818770eeae7a4b958109d4915ea3e8da572c6",
+      address: "0x8f8184e86574e02d283b39c662e9b6dc9209b475",
       abi: [
         {
           type: "constructor",
@@ -3992,11 +3920,6 @@ const deployedContracts = {
               internalType: "enum CNDataTypes.Sentiment",
             },
             {
-              name: "score",
-              type: "uint16",
-              internalType: "uint16",
-            },
-            {
               name: "uri",
               type: "string",
               internalType: "string",
@@ -4068,11 +3991,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -4131,11 +4049,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -4223,6 +4136,19 @@ const deployedContracts = {
             },
           ],
           stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "useWordlId",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
         },
         {
           type: "function",
@@ -4395,11 +4321,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -4452,11 +4373,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -4637,11 +4553,6 @@ const deployedContracts = {
               internalType: "enum CNDataTypes.Sentiment",
             },
             {
-              name: "score",
-              type: "uint16",
-              internalType: "uint16",
-            },
-            {
               name: "uri",
               type: "string",
               internalType: "string",
@@ -4713,11 +4624,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -4776,11 +4682,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -4868,6 +4769,19 @@ const deployedContracts = {
             },
           ],
           stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "useWordlId",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
         },
         {
           type: "function",
@@ -5040,11 +4954,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -5097,11 +5006,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -5282,11 +5186,6 @@ const deployedContracts = {
               internalType: "enum CNDataTypes.Sentiment",
             },
             {
-              name: "score",
-              type: "uint16",
-              internalType: "uint16",
-            },
-            {
               name: "uri",
               type: "string",
               internalType: "string",
@@ -5358,11 +5257,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -5421,11 +5315,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
@@ -5513,6 +5402,19 @@ const deployedContracts = {
             },
           ],
           stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "useWordlId",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
         },
         {
           type: "function",
@@ -5685,11 +5587,6 @@ const deployedContracts = {
                   internalType: "enum CNDataTypes.Sentiment",
                 },
                 {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
-                },
-                {
                   name: "uri",
                   type: "string",
                   internalType: "string",
@@ -5742,11 +5639,6 @@ const deployedContracts = {
                   name: "sentiment",
                   type: "uint8",
                   internalType: "enum CNDataTypes.Sentiment",
-                },
-                {
-                  name: "score",
-                  type: "uint16",
-                  internalType: "uint16",
                 },
                 {
                   name: "uri",
