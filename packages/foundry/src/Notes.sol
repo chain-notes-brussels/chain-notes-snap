@@ -4,6 +4,13 @@ pragma solidity 0.8.26;
 /* ChainNotes Libraries */
 import {CNDataTypes} from "src/libraries/CNDataTypes.sol";
 import {CNEvents} from "src/libraries/CNEvents.sol";
+import {CNErrors} from "src/libraries/CNErrors.sol";
+
+/* WorldID interface */
+import {IWorldID} from "src/interfaces/IWorldID.sol";
+
+/* Helpers */
+import {ByteHasher} from "src/helpers/ByteHasher.sol";
 
 /**
  * @title Notes
@@ -12,14 +19,33 @@ import {CNEvents} from "src/libraries/CNEvents.sol";
  *
  */
 contract Notes {
-    /// @dev Denominator used for calculating 
-    uint16 public constant DENOMINATOR = 10_000;
+    // Helper for worldId proving actions
+    using ByteHasher for bytes;
+
+    /// @dev Keep track of if we are using worldId
+    bool useWordlId;
+
+    /// @dev contract instance for worldId prover
+    IWorldID worldId;
 
     /// @dev Threshold for being scored helpful aka .40
     uint16 public constant HELPFULNESS_THRESHOLD = 40;
 
     /// @dev Threshold to be removed from being helpful aka .10
     uint16 public constant INITIAL_ELIGIBILITY_RATING_THRESHOLD = 10;
+
+    /// @dev The contract's external nullifier hash for notes
+    uint256 internal immutable externalNullifierNote;
+
+    /// @dev The contract's external nullifier hash for votes
+    uint256 internal immutable externalNullifierVote;
+
+    /// @dev The World ID group ID (always 1)
+    uint256 internal immutable groupId = 1;
+
+    mapping(address user => mapping(address contractAddress => bool writtenNote)) public userWrittenNoteFor;
+
+    mapping(address user => mapping(address contractAddress => mapping(uint16 index => bool voted))) public userVotedOnNote;
 
     /// @dev Array of notes for a specific contract address
     mapping(address contractAddress => CNDataTypes.Note[] note) public notesOf;
@@ -38,6 +64,30 @@ contract Notes {
     /// @dev A users rating on a specific note
     mapping(address user => mapping(address contractAddress => mapping(uint16 index => CNDataTypes.Rating))) public userRatingOfNote;
 
+    constructor(
+        bool _useWorldId,
+        address _worldId,
+        string memory _appId,
+        string memory _noteId,
+        string memory _voteId
+    ) {
+        // Set the status of worldId usage
+        useWordlId = _useWorldId;
+
+        // Instantiate world Id contract for proving
+        worldId = IWorldID(_worldId);
+
+        // create nullifier used for notes
+        externalNullifierNote = abi
+            .encodePacked(abi.encodePacked(_appId).hashToField(), _noteId)
+            .hashToField();
+
+        // create nullifier used for votes
+        externalNullifierVote = abi
+            .encodePacked(abi.encodePacked(_appId).hashToField(), _voteId)
+            .hashToField();
+    }
+
     /**
      * @notice
      *  Allows a user to publish a note for a specific contract
@@ -52,8 +102,25 @@ contract Notes {
     function publishNote(
         address _contractAddress,
         string calldata _uri,
-        CNDataTypes.Sentiment _sentiment
+        CNDataTypes.Sentiment _sentiment,
+        CNDataTypes.WorldIdProof memory _proof
     ) external returns(CNDataTypes.Note memory _note) {
+        // If user already written note for this contract revert
+        if (userWrittenNoteFor[msg.sender][_contractAddress]) revert CNErrors.YOU_HAVE_ALREADY(CNDataTypes.Actions.WRITTEN_NOTE);
+
+        // if we are using worldId...
+        if (useWordlId) {
+            // verify proof
+            worldId.verifyProof(
+                _proof.root,
+                groupId,
+                abi.encodePacked(_proof.signal).hashToField(),
+                _proof.nullifierHash,
+                externalNullifierNote,
+                _proof.proof
+            );
+        }
+
         // Create the note
         _note = CNDataTypes.Note({
             noteWriter: msg.sender,
@@ -67,6 +134,9 @@ contract Notes {
 
         // Increment the specified sentiment for the contract
         sentimentOf[_contractAddress][_sentiment]++;
+
+        // Toggle notes written for contract status
+        userWrittenNoteFor[msg.sender][_contractAddress] = true;
 
         // Emit the NotePublished event
         emit CNEvents.NotePublished(
@@ -89,8 +159,25 @@ contract Notes {
     function vote(
         CNDataTypes.Rating _rating,
         uint16 _noteIndex,
-        address _contractAddress
+        address _contractAddress,
+        CNDataTypes.WorldIdProof memory _proof
     ) external {
+        // Make sure user hasnt already voted on note
+        if (userVotedOnNote[msg.sender][_contractAddress][_noteIndex]) revert CNErrors.YOU_HAVE_ALREADY(CNDataTypes.Actions.VOTED);
+
+        // if we are using worldId...
+        if (useWordlId) {
+            // verify proof
+            worldId.verifyProof(
+                _proof.root,
+                groupId,
+                abi.encodePacked(_proof.signal).hashToField(),
+                _proof.nullifierHash,
+                externalNullifierVote,
+                _proof.proof
+            );
+        }
+
         // Update rating Weight of user
         ratingWeightOf[msg.sender][_rating]++;
 
@@ -139,6 +226,9 @@ contract Notes {
 
         // Set the score info to the note
         scoreInfoOf[_contractAddress][_noteIndex] = newScore;
+
+        // Toggle the voted on note stattus for user
+        userVotedOnNote[msg.sender][_contractAddress][_noteIndex] = true;
 
         // Emit Voted event
         emit CNEvents.Voted(
