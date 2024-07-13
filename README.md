@@ -1,80 +1,99 @@
-# 🏗 Scaffold-ETH 2
+# 🏗 Chain Notes
 
 <h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
+  <a href="https://github.com/chain-notes-brussels/chain-notes-snap">Repo</a> |
+  <a href="https://chain-notes.vercel.app/">Website</a>
 </h4>
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+🫰 Always falling for rugs and scams? Afraid to claim airdrops because you're unsure if the contract is safe? Chain Notes provides context about a contract, before a transaction. The context can show if a contract is malicious or safe, or provide other insightful information. What is shown is based on notes that are linked to an address, and voted on by the community. The voting logic is inspired on Twitter/X's implementation of Community Notes and [Vitalik's blog post](https://vitalik.eth.limo/general/2023/08/16/communitynotes.html).
 
-⚙️ Built using NextJS, RainbowKit, Foundry, Wagmi, Viem, and Typescript.
+⚙️ Built using NextJS, Foundry, Metamask Snap, WorldCoin and The Graph.
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
-
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
-
-## Requirements
-
-Before you begin, you need to install the following tools:
-
-- [Node (>= v18.17)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
-
-## Quickstart
-
-To get started with Scaffold-ETH 2, follow the steps below:
-
-1. Install dependencies if it was skipped in CLI:
-
-```
-cd my-dapp-example
-yarn install
-```
-
-2. Run a local network in the first terminal:
-
-```
-yarn chain
-```
-
-This command starts a local Ethereum network using Foundry. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/foundry/foundry.toml`.
-
-3. On a second terminal, deploy the test contract:
-
-```
-yarn deploy
-```
-
-This command deploys a test smart contract to the local network. The contract is located in `packages/foundry/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/foundry/script` to deploy the contract to the network. You can also customize the deploy script.
-
-4. On a third terminal, start your NextJS app:
-
-```
-yarn start
-```
-
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
-
-Run smart contract test with `yarn foundry:test`
-
-- Edit your smart contract `YourContract.sol` in `packages/foundry/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/foundry/script`
+- ✅ **User friendly UX**: Our Metamask Snap shows the most useful note/context before the user approves a transaction, to ensure the user does not interact with any malicious contracts.
+- 🧱 **Sybil resistant**: Using Worldcoin WorldID ensures that every person can only vote once on a note.
+- ⛓️ **Available on all chains**: Chain Notes is available on all EVM chains!
 
 
-## Documentation
+## Diagram
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
+![dashboard 1](assets/diagram.png)
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
+## Screenshots
 
-## Contributing to Scaffold-ETH 2
+| Landing page                      | Metamask Snap              |
+| --------------------------------- | --------------------------------- |
+| ![dashboard 1](screenshots/1.png) | ![dashboard 2](screenshots/2.png) |
 
-We welcome contributions to Scaffold-ETH 2!
+|  Create Note                          | View note                      |
+| --------------------------------- | --------------------------------- |
+| ![dashboard 3](screenshots/3.png) | ![dashboard 4](screenshots/4.png) |
 
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+
+
+## Bounties
+
+### Worldcoin
+
+### Base - Best Consumer App UX
+
+Our dApp is deployed on Base testnet. Our dApp provides context to contracts before approving a transaction, which can be used to warn users about malicious contracts. We think this is a great improvement to UX, since it's not intrusive and keeps users informed and safe.
+
+### Arbitrum - Best General Project Built on Arbitrum Technology
+
+Deployed our project on Arbitrum testnet.
+
+### Metamask Linea
+
+We created a metamask snap ([in a seperate repo](https://github.com/chain-notes-brussels/snap)) and deployed to Linea testnet.
+
+### Morph
+
+We deployed our contracts on Morph Holesky and manually added the config for the frontend, since this is not available yet in viem and scaffold. Bridging tokens to Morph and deploying was very straightforward. Only hickup we encountered was that we had to manually add network config on the frontend. 
+
+- [Manual network config](https://github.com/chain-notes-brussels/chain-notes-snap/blob/d71b19303b4d260dab5b9d66f40d89af665c750b/packages/nextjs/utils/scaffold-eth/morechains.ts)
+
+### Scroll - Best Project on Scroll
+
+### Neon EVM - Best Use Case of Neon EVM
+
+We deployed our contracts to the Neon EVM.
+
+### ApeCoin - Best Dapp
+
+We deployed our contracts to the ApeChain. Also we added custom config for the network on the frontend, since it was not available in viem and scaffold by default.
+- [Manual network config](https://github.com/chain-notes-brussels/chain-notes-snap/blob/d71b19303b4d260dab5b9d66f40d89af665c750b/packages/nextjs/utils/scaffold-eth/morechains.ts)
+
+
+### Zerion - Best build on ZERϴ Network
+
+We deployed our contracts on Zerio testnet. Also we added custom config for the network on the frontend, since it was not available in viem and scaffold by default.
+- [Manual network config](https://github.com/chain-notes-brussels/chain-notes-snap/blob/d71b19303b4d260dab5b9d66f40d89af665c750b/packages/nextjs/utils/scaffold-eth/morechains.ts)
+
+### Zircuit - Best Project on Zircuit
+
+We deployed our contracts on Zircuit and manually added the config for the frontend, since this is not available yet in viem and scaffold. Getting testnet tokens and deploying on Zircuit was very smooth. Only hickup we encountered was that we had to manually add network config on the frontend.
+
+- [Zircuit manual network config](https://github.com/chain-notes-brussels/chain-notes-snap/blob/d71b19303b4d260dab5b9d66f40d89af665c750b/packages/nextjs/utils/scaffold-eth/morechains.ts)
+
+
+## Links
+
+- [Live dApp on Vercel](https://chain-notes.vercel.app/)
+- [Github: Solidity contract and frontend dashboard](https://github.com/chain-notes-brussels/chain-notes-snap)
+- [Github: Metamask Snap](https://github.com/chain-notes-brussels/snap)
+
+### Deployed contracts
+- [Notes.sol on Sepolia](https://sepolia.etherscan.io/address/0x62a4d5b0f16d8eb9065310afbb7f2622d981f124)
+- [Notes.sol on Base Sepolia](https://sepolia.basescan.org/address/0x3B89a9D1026E29c7959154E5c826159C720007cb)
+- [Notes.sol on Arbitrum Sepolia](https://sepolia.arbiscan.io/address/0x83277E9FE7Cc93Ad2D5986b87659A6fa80A48Ac0)
+- [Notes.sol on Scroll Sepolia](https://sepolia.scrollscan.com/address/0x1e2818770eEaE7A4B958109d4915Ea3e8DA572c6)
+- [Notes.sol on Linea Sepolia](https://api-sepolia.lineascan.build/address/0x4CC142ed6B170CC9e7cbecca486B79cd88727821)
+
+### References
+- [Vitalik blog - What do I think about Community Notes?](https://vitalik.eth.limo/general/2023/08/16/communitynotes.html)
+
+## Team
+
+- [arjanjohan](https://x.com/arjanjohan/)
+- [0xjsi.eth](https://twitter.com/0xjsieth)
+- [Aleksandre Tsetskhladze](https://twitter.com/atsetsoffc)
