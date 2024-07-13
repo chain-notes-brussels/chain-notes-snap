@@ -141,6 +141,9 @@ contract Notes {
         // If user already written note for this contract revert
         if (userWrittenNoteFor[msg.sender][_contractAddress]) revert CNErrors.YOU_HAVE_ALREADY(CNDataTypes.Actions.WRITTEN_NOTE);
 
+        // Make sure address is a contract
+        if (!_isContract(_contractAddress)) revert CNErrors.NOT_A_CONTRACT();
+
         // if we are using worldId...
         if (useWordlId) {
             // verify proof
@@ -333,5 +336,30 @@ contract Notes {
 
         // Retrieve score
         _scores = scoresOf[_contractAddress];
+    }
+
+    //     ____      __                        __   ______                 __  _
+    //    /  _/___  / /____  _________  ____ _/ /  / ____/_  ______  _____/ /_(_)___  ____  _____
+    //    / // __ \/ __/ _ \/ ___/ __ \/ __ `/ /  / /_  / / / / __ \/ ___/ __/ / __ \/ __ \/ ___/
+    //  _/ // / / / /_/  __/ /  / / / / /_/ / /  / __/ / /_/ / / / / /__/ /_/ / /_/ / / / (__  )
+    // /___/_/ /_/\__/\___/_/  /_/ /_/\__,_/_/  /_/    \__,_/_/ /_/\___/\__/_/\____/_/ /_/____/
+
+    /**
+     * @notice
+     *  Allows contract to check if the Token address actually is a contract
+     *
+     * @param _address address we want to  check
+     *
+     * @return _isAddressContract returns true if token is a contract, otherwise returns false
+     *
+     */
+    function _isContract(address _address) internal view returns (bool _isAddressContract) {
+        uint256 size;
+
+        assembly {
+            size := extcodesize(_address)
+        }
+
+        _isAddressContract = size > 0;
     }
 }
