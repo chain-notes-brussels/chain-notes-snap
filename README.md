@@ -30,7 +30,7 @@
 
 |  View notes                          | Metamask Snap Popup                      |
 | --------------------------------- | --------------------------------- |
-| ![dashboard 3](assets/view.png) | ![dashboard 4](assets/4.png) |
+| ![dashboard 3](assets/view.png) | ![dashboard 4](assets/popup.png) |
 
 ## Smart Contracts overview ⌨️
 
