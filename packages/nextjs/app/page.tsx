@@ -12,30 +12,12 @@ import { Address } from "~~/components/scaffold-eth";
 // import type { ComponentProps, useState } from 'react';
 // import { ReactComponent as FlaskFox } from '../assets/flask_fox.svg';
 
-const handleExtensionButton = () => {
-  const requestSnap = useRequestSnap();
 
-  const confettiElement = document.createElement("div");
-  confettiElement.style.position = "fixed";
-  confettiElement.style.top = "0";
-  confettiElement.style.left = "0";
-  confettiElement.style.width = "100vw";
-  confettiElement.style.height = "100vh";
-  confettiElement.style.zIndex = "9999";
-  document.body.appendChild(confettiElement);
-
-  const confetti = <Confetti />;
-  // ReactDOM.render(confetti, confettiElement);
-
-  requestSnap();
-
-  setTimeout(() => {
-    document.body.removeChild(confettiElement);
-  }, 3000); // Hide confetti after 3 seconds
-};
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
+  const requestSnap = useRequestSnap();
+
   // const [confettiVisible, setConfettiVisible] = useState(false);
 
   return (
@@ -61,9 +43,7 @@ const Home: NextPage = () => {
             {/*  here */}
             <div className="flex justify-center">
               <button
-                onClick={() => {
-                  handleExtensionButton();
-                }}
+                onClick={requestSnap}
                 className="bg-black text-white p-3 m-auto transition transform hover:bg-gray-900 hover:shadow-lg hover:scale-105 active:bg-gray-700 active:shadow-md active:scale-95"
               >
                 Get Your Snap Now!
