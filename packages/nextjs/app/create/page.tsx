@@ -42,7 +42,7 @@ const CreateNote: NextPage = () => {
       console.log("note_ipfs", note_ipfs);
 
       const response = await axios.post(`${process.env.NEXT_PUBLIC_IPFS_API}/createNewNote`, {
-        note: note_ipfs,
+        ...note,
       });
 
       console.log("response", response.status);

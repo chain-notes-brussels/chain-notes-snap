@@ -10,12 +10,18 @@ import { isAddress } from "viem";
 import { Address } from "~~/components/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import { useAccount } from "wagmi";
+import { decodeAbiParameters, parseAbiParameters } from "viem";
+
+
 
 const ViewNote: NextPage = () => {
   const { targetNetwork } = useTargetNetwork();
   const { address } = useParams();
   const [notes, setNotes] = useState<any[]>([]);
   const [votes, setVotes] = useState<any[]>([]);
+  const { address: connectedAccount } = useAccount();
+
   const [proof, setProof] = useState("");
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
@@ -27,7 +33,6 @@ const ViewNote: NextPage = () => {
     functionName: "retrieveContractNotes",
     args: [address],
   });
-  console.log("notesData", notesData);
 
   const { writeContractAsync: writeNotesContract, isPending } = useScaffoldWriteContract("Notes");
 
@@ -47,11 +52,9 @@ const ViewNote: NextPage = () => {
 
         const contentsPromises = noteInfo.map(async (note: any) => {
           try {
-            console.log("Note content response: TRY");
-
             const response = await axios.get(`${process.env.NEXT_PUBLIC_IPFS_API}/getNote?cid=${note.uri}`);
-            console.log("Note content response:", response);
-            return response.data.content;
+            console.log("response", response);
+            return response.data.response.comment;
           } catch (error) {
             console.error("Error fetching note content:", error);
             return "Failed to fetch content";
@@ -70,11 +73,36 @@ const ViewNote: NextPage = () => {
 
   const handleVote = async (noteIndex: number, rating: number) => {
     const noteAddress = address;
+
+
+    let transformedProof = {
+      root: BigInt(0),
+      signal: "0x0000000000000000000000000000000000000000",
+      nullifierHash: BigInt(0),
+      proof: Array(8).fill(BigInt(0)),
+    };
+
+    // If the proof is available, use it.
+    if (proof) {
+      transformedProof = {
+        root: BigInt(proof!.merkle_root),
+        signal: connectedAccount,
+        nullifierHash: BigInt(proof!.nullifier_hash),
+        proof: decodeAbiParameters(parseAbiParameters("uint256[8]"), proof!.proof as `0x${string}`)[0],
+      };
+    }writeNotesContract
+
+
+
     try {
       console.log("Submitting vote...");
+      console.log("Rating:", rating);
+      console.log("Note index:", noteIndex);
+      console.log("Note address:", noteAddress);
+      console.log("Proof:", proof);
       await writeNotesContract({
         functionName: "vote",
-        args: [rating, BigInt(noteIndex), noteAddress, proof],
+        args: [rating, BigInt(noteIndex), noteAddress, transformedProof],
       });
       console.log("Vote submitted successfully");
     } catch (error) {
