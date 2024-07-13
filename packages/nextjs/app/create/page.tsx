@@ -49,10 +49,12 @@ console.log("note_ipfs", note_ipfs);
         throw new Error("Failed to store note in IPFS");
       }
       
+      console.log("CID", response.data.cid["/"]);
+
       // Write the note to the contract
       await writeNotesContractAsync({
         functionName: "publishNote",
-        args: [address, response.data.cid, isDanger],
+        args: [address, response.data.cid["/"], isDanger],
       });
     } catch (err) {
       console.error("Error calling create function", err);
