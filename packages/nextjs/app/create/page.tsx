@@ -109,7 +109,7 @@ const CreateNote: NextPage = () => {
 
             app_id={process.env.NEXT_PUBLIC_APP_ID as `app_${string}`}
             action={process.env.NEXT_PUBLIC_ACTION_CREATE as string}
-            signal={address} // proof will only verify if the signal is unchanged, this prevents tampering
+            signal={connectedAccount} // proof will only verify if the signal is unchanged, this prevents tampering
             onSuccess={setProof} // use onSuccess to call your smart contract
             // no use for handleVerify, so it is removed
             // use default verification_level (orb-only), as device credentials are not supported on-chain

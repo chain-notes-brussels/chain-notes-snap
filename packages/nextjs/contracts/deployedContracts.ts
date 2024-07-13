@@ -259,12 +259,29 @@ const deployedContracts = {
                 },
               ],
             },
+            {
+              name: "_scores",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.NoteScore[]",
+              components: [
+                {
+                  name: "score",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "consideredHelpful",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
           ],
           stateMutability: "view",
         },
         {
           type: "function",
-          name: "scoreInfoOf",
+          name: "scoresOf",
           inputs: [
             {
               name: "contractAddress",
@@ -272,9 +289,9 @@ const deployedContracts = {
               internalType: "address",
             },
             {
-              name: "index",
-              type: "uint16",
-              internalType: "uint16",
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           outputs: [
@@ -892,12 +909,29 @@ const deployedContracts = {
                 },
               ],
             },
+            {
+              name: "_scores",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.NoteScore[]",
+              components: [
+                {
+                  name: "score",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "consideredHelpful",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
           ],
           stateMutability: "view",
         },
         {
           type: "function",
-          name: "scoreInfoOf",
+          name: "scoresOf",
           inputs: [
             {
               name: "contractAddress",
@@ -905,9 +939,9 @@ const deployedContracts = {
               internalType: "address",
             },
             {
-              name: "index",
-              type: "uint16",
-              internalType: "uint16",
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           outputs: [
@@ -1525,12 +1559,29 @@ const deployedContracts = {
                 },
               ],
             },
+            {
+              name: "_scores",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.NoteScore[]",
+              components: [
+                {
+                  name: "score",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "consideredHelpful",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
           ],
           stateMutability: "view",
         },
         {
           type: "function",
-          name: "scoreInfoOf",
+          name: "scoresOf",
           inputs: [
             {
               name: "contractAddress",
@@ -1538,9 +1589,9 @@ const deployedContracts = {
               internalType: "address",
             },
             {
-              name: "index",
-              type: "uint16",
-              internalType: "uint16",
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           outputs: [
@@ -2158,12 +2209,29 @@ const deployedContracts = {
                 },
               ],
             },
+            {
+              name: "_scores",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.NoteScore[]",
+              components: [
+                {
+                  name: "score",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "consideredHelpful",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
           ],
           stateMutability: "view",
         },
         {
           type: "function",
-          name: "scoreInfoOf",
+          name: "scoresOf",
           inputs: [
             {
               name: "contractAddress",
@@ -2171,9 +2239,9 @@ const deployedContracts = {
               internalType: "address",
             },
             {
-              name: "index",
-              type: "uint16",
-              internalType: "uint16",
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           outputs: [
@@ -2539,7 +2607,7 @@ const deployedContracts = {
   },
   84532: {
     Notes: {
-      address: "0x5c0bda6a6d287dfdc058b86bdafc7509db74e111",
+      address: "0xe77fe9e644730ba9749da926ced8346aa80cbb29",
       abi: [
         {
           type: "constructor",
@@ -2791,12 +2859,29 @@ const deployedContracts = {
                 },
               ],
             },
+            {
+              name: "_scores",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.NoteScore[]",
+              components: [
+                {
+                  name: "score",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "consideredHelpful",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
           ],
           stateMutability: "view",
         },
         {
           type: "function",
-          name: "scoreInfoOf",
+          name: "scoresOf",
           inputs: [
             {
               name: "contractAddress",
@@ -2804,9 +2889,9 @@ const deployedContracts = {
               internalType: "address",
             },
             {
-              name: "index",
-              type: "uint16",
-              internalType: "uint16",
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           outputs: [
@@ -3424,12 +3509,29 @@ const deployedContracts = {
                 },
               ],
             },
+            {
+              name: "_scores",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.NoteScore[]",
+              components: [
+                {
+                  name: "score",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "consideredHelpful",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
           ],
           stateMutability: "view",
         },
         {
           type: "function",
-          name: "scoreInfoOf",
+          name: "scoresOf",
           inputs: [
             {
               name: "contractAddress",
@@ -3437,9 +3539,9 @@ const deployedContracts = {
               internalType: "address",
             },
             {
-              name: "index",
-              type: "uint16",
-              internalType: "uint16",
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           outputs: [
@@ -3805,7 +3907,7 @@ const deployedContracts = {
   },
   534351: {
     Notes: {
-      address: "0x8f8184e86574e02d283b39c662e9b6dc9209b475",
+      address: "0xad0324c6b74d90666dea9ab290646ebf945fa99c",
       abi: [
         {
           type: "constructor",
@@ -4057,12 +4159,29 @@ const deployedContracts = {
                 },
               ],
             },
+            {
+              name: "_scores",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.NoteScore[]",
+              components: [
+                {
+                  name: "score",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "consideredHelpful",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
           ],
           stateMutability: "view",
         },
         {
           type: "function",
-          name: "scoreInfoOf",
+          name: "scoresOf",
           inputs: [
             {
               name: "contractAddress",
@@ -4070,9 +4189,9 @@ const deployedContracts = {
               internalType: "address",
             },
             {
-              name: "index",
-              type: "uint16",
-              internalType: "uint16",
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           outputs: [
@@ -4690,12 +4809,29 @@ const deployedContracts = {
                 },
               ],
             },
+            {
+              name: "_scores",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.NoteScore[]",
+              components: [
+                {
+                  name: "score",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "consideredHelpful",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
           ],
           stateMutability: "view",
         },
         {
           type: "function",
-          name: "scoreInfoOf",
+          name: "scoresOf",
           inputs: [
             {
               name: "contractAddress",
@@ -4703,9 +4839,9 @@ const deployedContracts = {
               internalType: "address",
             },
             {
-              name: "index",
-              type: "uint16",
-              internalType: "uint16",
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           outputs: [
@@ -5323,12 +5459,29 @@ const deployedContracts = {
                 },
               ],
             },
+            {
+              name: "_scores",
+              type: "tuple[]",
+              internalType: "struct CNDataTypes.NoteScore[]",
+              components: [
+                {
+                  name: "score",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "consideredHelpful",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
           ],
           stateMutability: "view",
         },
         {
           type: "function",
-          name: "scoreInfoOf",
+          name: "scoresOf",
           inputs: [
             {
               name: "contractAddress",
@@ -5336,9 +5489,9 @@ const deployedContracts = {
               internalType: "address",
             },
             {
-              name: "index",
-              type: "uint16",
-              internalType: "uint16",
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           outputs: [
