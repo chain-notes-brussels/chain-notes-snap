@@ -1,4 +1,5 @@
 import * as chains from "viem/chains";
+import { zircuit } from "./utils/scaffold-eth/morechains";
 
 export type ScaffoldConfig = {
   targetNetworks: readonly chains.Chain[];
@@ -10,7 +11,23 @@ export type ScaffoldConfig = {
 
 const scaffoldConfig = {
   // The networks on which your DApp is live
-  targetNetworks: [chains.sepolia],
+  targetNetworks: [
+    chains.sepolia,
+    chains.baseSepolia,
+    chains.arbitrumSepolia,
+    chains.celoAlfajores,
+    chains.morphSepolia,
+    chains.scrollSepolia,
+    chains.neonDevnet,
+    chains.lineaSepolia,
+    chains.rootstockTestnet,
+    zircuit
+  
+    // zircuit
+    // flare
+    // inco
+    // galadriel
+  ],
 
   // The interval at which your front-end polls the RPC servers for new data
   // it has no effect if you only target the local network (default is 4000)
