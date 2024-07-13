@@ -18,7 +18,7 @@ contract CounterScript is Script {
         if (_onBase) {
             notes = new Notes(
                 true,
-                0x163b09b4fE21177c455D850BD815B6D583732432,
+                0x42FF98C4E85212a5D31358ACbFe76a621b50fC02,
                 appId,
                 noteId,
                 voteId
