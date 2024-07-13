@@ -121,6 +121,7 @@ We used blockscout for some of the chains we used, so when you click on a addres
 - [Live dApp on Vercel](https://chain-notes.vercel.app/)
 - [Github: Solidity contract and frontend dashboard](https://github.com/chain-notes-brussels/chain-notes-snap)
 - [Github: Metamask Snap](https://github.com/chain-notes-brussels/snap)
+- [Presentation slides](https://docs.google.com/presentation/d/1Xd99gtVZSGbwSzWEGFpmDQCWXY6m0bKK811WZNHsah0/edit?usp=sharing)
 
 ### Deployed contracts
 - [Notes.sol on Base Sepolia](https://sepolia.basescan.org/address/0x640a8be4be3B18b35A7D7bbBaB2444AD4d5fc87a)
