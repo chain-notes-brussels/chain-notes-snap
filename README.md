@@ -77,7 +77,7 @@ Our dApp is deployed on Base testnet. Our dApp provides community provided conte
 
 ### Arbitrum
 
-Deployed our project on Arbitrum testnet. We thought this fitted the DeSoc narrative mentioned in the bounty descriptions because we view this app as adding a social layer, of contract and wallet reputations, on top of the blockchain borrowing from social media concepts from x dot com.
+Deployed our project on Arbitrum testnet. We thinks this fits the DeSoc narrative mentioned in the bounty descriptions because we view this app as adding a social layer, of contract and wallet reputations, on top of the blockchain borrowing from social media concepts from x dot com.
 - [Notes.sol on Arbitrum Sepolia](https://sepolia.arbiscan.io/address/0x3B89a9D1026E29c7959154E5c826159C720007cb)
 
 ### Morph
@@ -99,7 +99,7 @@ We deployed our contracts to the ApeChain. Also we added custom config for the n
 
 ### Zerion
 
-We deployed our contracts on Zerio testnet. Also we added custom config for the network on the frontend, since it was not available in viem and scaffold by default.
+We deployed our contracts on Zero testnet. Also we added custom config for the network on the frontend, since it was not available in viem and scaffold by default.
 - [Manual network config](https://github.com/chain-notes-brussels/chain-notes-snap/blob/d71b19303b4d260dab5b9d66f40d89af665c750b/packages/nextjs/utils/scaffold-eth/morechains.ts)
 - [Notes.sol on Zero](https://explorer.zero.network/address/0x83277E9FE7Cc93Ad2D5986b87659A6fa80A48Ac0)
 
@@ -108,6 +108,10 @@ We deployed our contracts on Zerio testnet. Also we added custom config for the 
 We deployed our contracts on Zircuit and manually added the config for the frontend, since this is not available yet in viem and scaffold. Getting testnet tokens and deploying on Zircuit was very smooth. Only hickup we encountered was that we had to manually add network config on the frontend.
 - [Manual network config](https://github.com/chain-notes-brussels/chain-notes-snap/blob/d71b19303b4d260dab5b9d66f40d89af665c750b/packages/nextjs/utils/scaffold-eth/morechains.ts)
 - [Notes.sol on Zircuit](https://explorer.zircuit.com/address/0x77C461C1E180DD6A08A17E74bFb5207e44c7aC7f)
+
+### Blockscout
+We used blockscout for some of the chains we used, so when you click on a address link or tx link in our dApp, it takes you to the blockscout page. 
+- [Network config with Blockscout als explorer](https://github.com/chain-notes-brussels/chain-notes-snap/blob/29117cd29fee1e1f35cbd52841967cba1b123079/packages/nextjs/utils/scaffold-eth/morechains.ts#L42)
 
 ## Links
 
