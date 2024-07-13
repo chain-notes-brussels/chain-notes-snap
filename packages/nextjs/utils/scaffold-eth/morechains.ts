@@ -29,7 +29,7 @@ export const zircuit = defineChain({
 export const apeChain = defineChain({
   id: 1798,
   network: "Jenkins",
-  name: "apeChain Jenkins",
+  name: "ApeChain Jenkins",
   nativeCurrency: { name: "APE", symbol: "APE", decimals: 18 },
   rpcUrls: {
     default: {
@@ -39,6 +39,17 @@ export const apeChain = defineChain({
       http: ["https://jenkins.rpc.caldera.xyz/http"],
     },
   },
+  blockExplorers: {
+    blockscout: {
+      name: "Blockscout",
+      url: "https://jenkins.explorer.caldera.xyz/",
+    },
+    default: {
+      name: "Blockscout",
+      url: "  https://jenkins.explorer.caldera.xyz/",
+    },
+  },
+  
   testnet: true,
 });
 
