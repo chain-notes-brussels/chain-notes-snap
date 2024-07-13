@@ -84,13 +84,12 @@ We deployed our contracts on Zircuit and manually added the config for the front
 ## Links
 
 - [Live dApp on Vercel](https://chain-notes.vercel.app/)
-- [Endpoint to create Note on IPFS](https://api-phi-vert.vercel.app/createNewNote)
 - [Github: Solidity contract and frontend dashboard](https://github.com/chain-notes-brussels/chain-notes-snap)
 - [Github: Metamask Snap](https://github.com/chain-notes-brussels/snap)
 
 ### Deployed contracts
 - [Notes.sol on Base Sepolia](https://sepolia.basescan.org/address/0x640a8be4be3B18b35A7D7bbBaB2444AD4d5fc87a)
-- [Notes.sol on Arbitrum Sepolia](https://sepolia-explorer.arbitrum.io/address/0x3B89a9D1026E29c7959154E5c826159C720007cb)
+- [Notes.sol on Arbitrum Sepolia](https://sepolia.arbiscan.io/address/0x3B89a9D1026E29c7959154E5c826159C720007cb)
 - [Notes.sol on Scroll Sepolia](https://sepolia.scrollscan.com/address/0x15042Ce1Ff21659CE9CeB280618ca562526d5639)
 - [Notes.sol on Linea Sepolia](https://sepolia.lineascan.build/address/0xC5972F3F7F43bD3692D9E5Ea0c2af96d56d0ee28)
 - [Notes.sol on ApeChain](https://jenkins.explorer.caldera.xyz/address/0xa52A05eB2Eb48499d5bEB6d89d39dDB41854f47C)
