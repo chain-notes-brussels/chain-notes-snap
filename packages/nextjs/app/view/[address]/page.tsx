@@ -171,7 +171,7 @@ const ViewNote: NextPage = () => {
               >
                 <div className="flex flex-col mb-4">
                   <p className="font-medium my-0 break-words mb-2">
-                    {note.sentiment ? "✅ Positive note" : "❌ Negative note"}
+                    {!note.sentiment ? "✅ Positive note" : "❌ Negative note"}
                   </p>
                   <div className="bg-secondary rounded-3xl text-sm px-4 py-1.5 break-words overflow-auto">
                     <pre className="whitespace-pre-wrap break-words">{noteContents[index]}</pre>
