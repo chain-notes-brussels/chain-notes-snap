@@ -1,4 +1,4 @@
-# 🏗 Chain Notes
+# ⛓️ Oh Snap!
 
 <h4 align="center">
   <a href="https://github.com/chain-notes-brussels/chain-notes-snap">Repo</a> |
@@ -8,14 +8,14 @@
 ![logo](assets/logo.png)
 </h4>
 
-🫰 Always falling for rugs and scams? Afraid to claim airdrops because you're unsure if the contract is safe? Chain Notes provides context about a contract, before a transaction. The context can show if a contract is malicious or safe, or provide other insightful information. What is shown is based on notes that are linked to an address, and voted on by the community. The voting logic is a slightly simplified version on Twitter/X's voting algorithm of Community Notes and we used [Vitalik's blog post](https://vitalik.eth.limo/general/2023/08/16/communitynotes.html) for guidance. We have set the contract up in such a way so that we can easily implement the full algorithm with some offchain computing when we continue after the hackathon.
+🫰 Always falling for rugs and scams? Afraid to claim airdrops because you're unsure if the contract is safe? Oh Snap! provides context about a contract, before a transaction. The context can show if a contract is malicious or safe, or provide other insightful information. What is shown is based on notes that are linked to an address, and voted on by the community. The voting logic is a slightly simplified version on Twitter/X's voting algorithm of Community Notes and we used [Vitalik's blog post](https://vitalik.eth.limo/general/2023/08/16/communitynotes.html) for guidance. We have set the contract up in such a way so that we can easily implement the full algorithm with some offchain computing when we continue after the hackathon.
 
 ⚙️ Built using NextJS, Foundry, Metamask Snap, World ID and Filecoin/IPFS.
 
 - ✅ **User friendly UX**: Our Metamask Snap shows the most useful note/context before the user approves a transaction, to ensure the user does not interact with any malicious contracts.
 - 🧱 **Sybil resistant**: Using Worldcoin WorldID ensures that every person can only vote once on a note.
 - 🖥️ **Tamper Proof Data**: Using IPFS, we make sure to store the notes about all contracts cheaply and tamper proof. Hence, IPFS was the obvious choice for important Oh Snap data
-- ⛓️ **Available on all chains**: Chain Notes is available on all EVM chains!
+- ⛓️ **Available on all chains**: Oh Snap! is available on all EVM chains!
 
 
 ## Diagram
